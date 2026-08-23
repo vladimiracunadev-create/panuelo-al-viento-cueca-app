@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Dependencias
+        run: flutter pub get
+      - name: Validadores independientes
+        run: |
+          node tool/validate_repository.mjs
+          node tool/validate_curriculum.mjs
+      - name: Formato
+        run: dart format --output=none lib test tool
+      - name: Análisis estático
+        run: flutter analyze
+      - name: Pruebas
+        run: flutter test --reporter expanded

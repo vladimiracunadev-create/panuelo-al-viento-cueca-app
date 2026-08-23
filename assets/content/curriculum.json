@@ -1,0 +1,871 @@
+{
+  "version": "1.0.0",
+  "title": "Pañuelo al Viento",
+  "audience": "Niñas y niños de aproximadamente 10 años, con mediación familiar o docente cuando sea posible.",
+  "levels": [
+    {
+      "id": "level-01",
+      "order": 1,
+      "title": "Descubro la cueca",
+      "subtitle": "Conozco su historia, escucho el pulso y preparo mi espacio.",
+      "emoji": "🌟",
+      "lessons": [
+        {
+          "id": "lesson-01",
+          "order": 1,
+          "title": "Un baile que recorre Chile",
+          "durationMinutes": 12,
+          "objective": "Reconocer la cueca como una tradición viva y diversa.",
+          "why": "La cueca se baila y canta de distintas maneras a lo largo de Chile. Fue declarada baile nacional en 1979, pero pertenece a comunidades que la mantienen viva y la transforman.",
+          "diagram": "pair",
+          "activities": [
+            {
+              "type": "discover",
+              "title": "Mira y nombra",
+              "instruction": "Imagina una pareja con pañuelos. Nombra tres cosas que podrían comunicar sin hablar: alegría, invitación, juego o respeto.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Saludo en movimiento",
+              "instruction": "Desde tu lugar, da dos pasos suaves, saluda con la cabeza y vuelve. No necesitas vestimenta especial.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "La cueca que imagino",
+              "instruction": "Cuenta o dibuja dónde te gustaría verla: una plaza, una escuela, una casa, el norte, el centro, el sur u otro lugar.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Explica en una frase por qué una tradición puede tener muchas formas.",
+          "safety": "Observa el lugar antes de moverte y retira objetos con los que puedas tropezar.",
+          "accessibility": "El saludo puede hacerse de pie, sentado o solamente con mirada, cabeza y manos.",
+          "teacherTip": "Pregunta primero qué experiencias tiene el grupo. Evita presentar la vestimenta de la zona central como representación de todo Chile."
+        },
+        {
+          "id": "lesson-02",
+          "order": 2,
+          "title": "Seis pulsos para jugar",
+          "durationMinutes": 12,
+          "objective": "Sentir y agrupar un ciclo de seis pulsos.",
+          "why": "Escuchar antes de desplazarse ayuda a que el cuerpo no persiga la música. La cueca combina acentos que pueden sentirse de más de una manera.",
+          "diagram": "steps",
+          "activities": [
+            {
+              "type": "listen",
+              "title": "Cuenta seis",
+              "instruction": "Abre el Laboratorio de ritmo a velocidad lenta y cuenta 1, 2, 3, 4, 5, 6 durante cuatro vueltas.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Manos y pies",
+              "instruction": "Marca los seis pulsos con palmas. Después repite con pasos pequeños, sin saltar.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Compara acentos",
+              "instruction": "Prueba 3 + 3 y 2 + 2 + 2. Di cuál se siente más fácil hoy; no hay respuesta incorrecta.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Completa un ciclo sin mirar la pantalla y comprueba si llegaste al seis junto con la luz.",
+          "safety": "Mantén pasos bajos y rodillas relajadas. Baja la velocidad si pierdes el equilibrio.",
+          "accessibility": "Puedes marcar el pulso con dedos, hombros, mirada o un objeto sonoro suave.",
+          "teacherTip": "No conviertas el patrón simplificado en una regla musical absoluta; úsalo como entrenamiento auditivo inicial."
+        },
+        {
+          "id": "lesson-03",
+          "order": 3,
+          "title": "Mi espacio para bailar",
+          "durationMinutes": 12,
+          "objective": "Reconocer el espacio personal y desplazarse con control.",
+          "why": "Una buena cueca necesita atención al entorno y a la otra persona. Cuidar la distancia permite bailar con confianza.",
+          "diagram": "circle",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Dibuja tu escenario",
+              "instruction": "Marca en el piso un cuadrado imaginario de dos pasos por lado y revisa que esté despejado.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Recorre los bordes",
+              "instruction": "Camina alrededor del cuadrado mirando al frente. Cambia de dirección cuando alguien dé una palmada.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Semáforo corporal",
+              "instruction": "Verde: cómodo; amarillo: necesito ir lento; rojo: me detengo. Practica decir cuál sientes.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Haz una vuelta completa sin salir de tu escenario y termina mirando al punto inicial.",
+          "safety": "Deja al menos un brazo de distancia respecto de muebles y otras personas.",
+          "accessibility": "Reduce el escenario o recórrelo con manos, mirada o ruedas según tu movilidad.",
+          "teacherTip": "Normaliza que cada persona necesite un tamaño y velocidad diferentes. La conciencia espacial vale más que la rapidez."
+        }
+      ]
+    },
+    {
+      "id": "level-02",
+      "order": 2,
+      "title": "Pañuelo y saludo",
+      "subtitle": "Uso el pañuelo como extensión del gesto y comienzo el encuentro.",
+      "emoji": "🤍",
+      "lessons": [
+        {
+          "id": "lesson-04",
+          "order": 4,
+          "title": "Postura cómoda y despierta",
+          "durationMinutes": 12,
+          "objective": "Adoptar una postura estable sin rigidez.",
+          "why": "La postura ayuda a mirar, respirar y reaccionar. No se trata de parecer una estatua, sino de estar disponible para el movimiento.",
+          "diagram": "free",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Pies con base",
+              "instruction": "Separa los pies al ancho que te resulte cómodo y prueba mover el peso de un lado al otro.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Crece y afloja",
+              "instruction": "Imagina un hilo suave que eleva tu cabeza. Suelta hombros, respira y da seis pasos tranquilos.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Chequeo rápido",
+              "instruction": "Di qué parte está relajada y cuál necesita menos tensión. Ajusta sin compararte.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Camina, detente y vuelve a empezar sin perder una respiración cómoda.",
+          "safety": "Nunca bloquees las rodillas ni fuerces la espalda para verte más alto.",
+          "accessibility": "Busca una alineación cómoda en silla o con apoyo; la presencia también nace de la mirada y la respiración.",
+          "teacherTip": "Evita corregir cuerpos hacia una única silueta. Observa estabilidad, respiración y ausencia de dolor."
+        },
+        {
+          "id": "lesson-05",
+          "order": 5,
+          "title": "El pañuelo habla",
+          "durationMinutes": 12,
+          "objective": "Explorar movimientos claros y suaves con el pañuelo.",
+          "why": "El pañuelo hace visible la intención: puede invitar, responder, acompañar o celebrar. No necesita moverse rápido para comunicar.",
+          "diagram": "wave",
+          "activities": [
+            {
+              "type": "discover",
+              "title": "Elige un pañuelo seguro",
+              "instruction": "Usa una tela liviana, limpia y sin adornos duros. Tómala de una esquina sin apretar la mano.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Tres trazos",
+              "instruction": "Dibuja en el aire una ola, un círculo y una letra S. Mantén el movimiento lejos de caras y ojos.",
+              "minutes": 5
+            },
+            {
+              "type": "create",
+              "title": "Un gesto propio",
+              "instruction": "Inventa un movimiento que diga “hola” y otro que diga “celebro”. Muéstralos sin hablar.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Haz una ola continua durante seis pulsos sin tensar el hombro.",
+          "safety": "No uses telas largas ni elementos con broches, monedas o bordes que puedan golpear.",
+          "accessibility": "El pañuelo puede sujetarse a una muñequera blanda o reemplazarse por una cinta corta de alto contraste.",
+          "teacherTip": "Valora la intención y el control, no el tamaño del gesto. Pregunta siempre antes de ajustar físicamente una postura."
+        },
+        {
+          "id": "lesson-06",
+          "order": 6,
+          "title": "Paseo, encuentro y saludo",
+          "durationMinutes": 12,
+          "objective": "Iniciar una secuencia con atención y respeto.",
+          "why": "El inicio prepara el diálogo. Mirar el espacio y reconocer a la pareja es más importante que memorizar una pose.",
+          "diagram": "pair",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Acuerdo antes de bailar",
+              "instruction": "Con otra persona, elijan distancia, dirección y una señal para detenerse. Si practicas solo, elige un punto de referencia.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Paseo breve",
+              "instruction": "Caminen cuatro o seis pasos tranquilos hasta sus lugares y queden frente a frente, sin tocarse.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Saludo elegido",
+              "instruction": "Prueben saludo con cabeza, pañuelo o mano libre. Ambos deben sentirse cómodos.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Lleguen a sus lugares al mismo tiempo y dejen un final claro antes de comenzar otra vez.",
+          "safety": "Camina mirando la ruta y no hacia atrás en un espacio pequeño.",
+          "accessibility": "El paseo puede ser un acercamiento de manos, mirada o ruedas; conserva el acuerdo y el saludo.",
+          "teacherTip": "Presenta el consentimiento y la distancia como parte técnica del baile, no como una excepción."
+        }
+      ]
+    },
+    {
+      "id": "level-03",
+      "order": 3,
+      "title": "Vueltas y recorridos",
+      "subtitle": "Dibujo figuras en el piso sin perder a mi pareja de vista.",
+      "emoji": "🌀",
+      "lessons": [
+        {
+          "id": "lesson-07",
+          "order": 7,
+          "title": "La vuelta inicial",
+          "durationMinutes": 12,
+          "objective": "Recorrer una vuelta y regresar a una referencia clara.",
+          "why": "La vuelta transforma el saludo en movimiento. Su tamaño y forma pueden variar, pero necesita orientación y un cierre reconocible.",
+          "diagram": "circle",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Marca dos lugares",
+              "instruction": "Ubica tu inicio y el de tu pareja con señales imaginarias. Acuerden hacia dónde partir.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Camina la vuelta",
+              "instruction": "Recorre un círculo o arco amplio con pasos naturales. Vuelve a tu señal sin correr.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Encuentra el cierre",
+              "instruction": "Detente de frente, respira y comprueba la distancia. Ajusta el recorrido si quedaron demasiado cerca.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Repite tres veces y llega al mismo lugar con velocidades diferentes.",
+          "safety": "Gira con pasos, no sobre una rodilla fija. Evita vueltas rápidas si te mareas.",
+          "accessibility": "Traza el arco con brazos, mirada o silla; también puedes usar medio círculo en vez de uno completo.",
+          "teacherTip": "Las convenciones de la vuelta cambian según enseñanza y estilo. Declara la variante usada y prioriza orientación."
+        },
+        {
+          "id": "lesson-08",
+          "order": 8,
+          "title": "Dos medialunas",
+          "durationMinutes": 12,
+          "objective": "Moverse en arco manteniendo un diálogo visual.",
+          "why": "La medialuna permite acercarse y alejarse sin invadir. El recorrido se construye observando y respondiendo.",
+          "diagram": "semicircle",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Imagina dos arcos",
+              "instruction": "Cada persona elige un semicírculo frente a la otra. Muéstrenlo primero con un dedo en el aire.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Recorre y responde",
+              "instruction": "Avanza por tu arco durante seis pulsos. Mantén el pecho disponible hacia el centro sin torcerte.",
+              "minutes": 5
+            },
+            {
+              "type": "create",
+              "title": "Cambia el tamaño",
+              "instruction": "Prueba una medialuna pequeña y otra grande. Elijan cuál funciona mejor en el espacio.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Completen dos medialunas sin cruzar recorridos y terminen a una distancia cómoda.",
+          "safety": "Mira también el piso y los bordes; no fijes la vista solamente en la pareja.",
+          "accessibility": "Un arco puede expresarse con desplazamiento mínimo y un giro de torso, cabeza o manos.",
+          "teacherTip": "Usa marcas removibles solo si no se convierten en obstáculos. Retíralas cuando el grupo comprenda la figura."
+        },
+        {
+          "id": "lesson-09",
+          "order": 9,
+          "title": "Cambio de lugar y figura de ocho",
+          "durationMinutes": 12,
+          "objective": "Cruzar recorridos de forma coordinada y segura.",
+          "why": "Cambiar de lugar exige anticipar por dónde pasará cada persona. La figura de ocho ayuda a entender encuentros y separaciones.",
+          "diagram": "eight",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Dibuja el ocho",
+              "instruction": "Sigue el diagrama con tu dedo y ubica el centro donde los recorridos se aproximan.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Cruza por turnos",
+              "instruction": "Primero recorre una persona y después la otra. Luego háganlo a la vez con suficiente distancia.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Señal de paso",
+              "instruction": "Elijan una mirada o gesto de pañuelo que avise cuándo cambiar de lado.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Cambien de lugar dos veces sin detener el pulso y sin acercarse demasiado.",
+          "safety": "Practica primero sin pañuelo y a velocidad lenta. El centro debe permanecer despejado.",
+          "accessibility": "Una persona puede mantener su lugar mientras la otra recorre; intercambien funciones después.",
+          "teacherTip": "Si hay choques, reduce el recorrido y vuelve a las señales. No soluciones el problema acelerando."
+        }
+      ]
+    },
+    {
+      "id": "level-04",
+      "order": 4,
+      "title": "Pasos que conversan",
+      "subtitle": "Combino caminata, paso base y escobillado con transiciones claras.",
+      "emoji": "👣",
+      "lessons": [
+        {
+          "id": "lesson-10",
+          "order": 10,
+          "title": "Caminar con el pulso",
+          "durationMinutes": 12,
+          "objective": "Trasladar el pulso a pasos naturales y controlados.",
+          "why": "Antes de adornar, conviene caminar a tiempo. Un paso simple y musical sostiene todo lo que viene después.",
+          "diagram": "steps",
+          "activities": [
+            {
+              "type": "listen",
+              "title": "Pulso en el lugar",
+              "instruction": "Marca seis pulsos cambiando suavemente el peso entre ambos pies.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Avanza y vuelve",
+              "instruction": "Da tres pasos hacia adelante y tres hacia atrás. Mira el espacio y mantén los pasos pequeños.",
+              "minutes": 5
+            },
+            {
+              "type": "create",
+              "title": "Añade intención",
+              "instruction": "Repite una vez con energía tranquila y otra con alegría. Observa qué cambia sin alterar el pulso.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Completa cuatro ciclos manteniendo la misma velocidad y una respiración cómoda.",
+          "safety": "Apoya el pie completo de manera suave y evita retroceder si no ves el camino.",
+          "accessibility": "El cambio de peso puede hacerse sentado, moviendo talones, manos o ruedas al pulso.",
+          "teacherTip": "Escucha la regularidad antes de pedir adornos. Celebrar un pulso estable reduce ansiedad motora."
+        },
+        {
+          "id": "lesson-11",
+          "order": 11,
+          "title": "Escobillado suave",
+          "durationMinutes": 12,
+          "objective": "Explorar un paso lateral rozado sin impacto.",
+          "why": "El escobillado crea continuidad y cercanía con el suelo. Debe sentirse liviano, no como una prueba de velocidad.",
+          "diagram": "steps",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Prueba el suelo",
+              "instruction": "Comprueba que la superficie no resbale. Haz un roce pequeño con cada pie sin cargar todo el peso.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Lado a lado",
+              "instruction": "Alterna pasos laterales cortos durante seis pulsos. Mantén la cadera y las rodillas cómodas.",
+              "minutes": 5
+            },
+            {
+              "type": "listen",
+              "title": "Menos ruido, más pulso",
+              "instruction": "Repite intentando escuchar el laboratorio por encima de tus pies. Reduce fuerza si haces demasiado ruido.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Haz dos recorridos laterales y cambia de dirección sin detenerte.",
+          "safety": "No arrastres con fuerza ni uses calcetines sobre piso liso. Detente ante dolor de tobillo o rodilla.",
+          "accessibility": "Representa el roce alternando manos sobre una mesa, ruedas cortas o puntas y talones sentado.",
+          "teacherTip": "El nombre y la ejecución pueden variar en distintas escuelas. Enseña la cualidad del movimiento y registra la variante."
+        },
+        {
+          "id": "lesson-12",
+          "order": 12,
+          "title": "Unir sin apurarse",
+          "durationMinutes": 12,
+          "objective": "Cambiar entre caminata, medialuna y escobillado.",
+          "why": "Las transiciones cuentan una historia. Preparar el cambio evita cortes bruscos y permite seguir dialogando con la pareja.",
+          "diagram": "semicircle",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Tres señales",
+              "instruction": "Asocia caminar con uno, medialuna con dos y escobillado con tres. Ensaya los cambios sin música.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Secuencia lenta",
+              "instruction": "Camina seis pulsos, recorre una medialuna y termina con seis pulsos de escobillado.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "El cambio más difícil",
+              "instruction": "Identifica dónde perdiste el equilibrio o el pulso y repite solamente ese enlace dos veces.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Completa la secuencia sin pausa, aunque uses movimientos muy pequeños.",
+          "safety": "Mantén una velocidad en la que puedas detenerte inmediatamente al escuchar la señal acordada.",
+          "accessibility": "Elige dos de los tres movimientos o represéntalos con distintas partes del cuerpo.",
+          "teacherTip": "Evalúa la continuidad y la decisión, no la copia exacta de una demostración."
+        }
+      ]
+    },
+    {
+      "id": "level-05",
+      "order": 5,
+      "title": "Diálogo en pareja",
+      "subtitle": "Observo, respondo y comparto el espacio sin imponer contacto.",
+      "emoji": "🤝",
+      "lessons": [
+        {
+          "id": "lesson-13",
+          "order": 13,
+          "title": "Mirar sin quedarse fijo",
+          "durationMinutes": 12,
+          "objective": "Alternar atención entre pareja, recorrido y entorno.",
+          "why": "Bailar en pareja requiere presencia, pero mirar solamente a una persona puede hacer que olvides el espacio. La atención se mueve contigo.",
+          "diagram": "pair",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Tres puntos de atención",
+              "instruction": "Nombra pareja o referencia, ruta y borde del espacio. Mira cada punto sin mover aún los pies.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Atención viajera",
+              "instruction": "Haz una medialuna alternando la mirada entre los tres puntos. Mantén la cabeza cómoda.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Señal amable",
+              "instruction": "Acuerden una señal para recuperar coordinación si alguien se pierde: sonrisa, gesto o pausa.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Completa el recorrido sin chocar y sin perder la referencia de la otra persona.",
+          "safety": "No camines de espaldas para mantener contacto visual. Gira el cuerpo y conserva la ruta visible.",
+          "accessibility": "La referencia puede ser una voz, un color, una vibración o una persona de apoyo.",
+          "teacherTip": "No exijas contacto visual sostenido. Algunas personas se comunican mejor con orientación corporal, voz o distancia."
+        },
+        {
+          "id": "lesson-14",
+          "order": 14,
+          "title": "Invitar, responder y cambiar roles",
+          "durationMinutes": 12,
+          "objective": "Proponer y responder movimientos con roles intercambiables.",
+          "why": "La cueca puede sentirse como una conversación. Cualquier participante puede iniciar una idea y la otra persona puede responderla a su manera.",
+          "diagram": "pair",
+          "activities": [
+            {
+              "type": "discover",
+              "title": "El sí y el todavía no",
+              "instruction": "Practiquen señales claras para aceptar, reducir o detener una propuesta de movimiento.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Eco de pañuelos",
+              "instruction": "Una persona hace un gesto durante tres pulsos y la otra responde durante tres. Cambien quién comienza.",
+              "minutes": 5
+            },
+            {
+              "type": "create",
+              "title": "Respuesta diferente",
+              "instruction": "En vez de copiar, responde con un gesto que tenga energía parecida pero otra forma.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Construyan cuatro preguntas y respuestas sin hablar y luego cuenten qué entendieron.",
+          "safety": "Mantengan pañuelos lejos del rostro y respeten de inmediato la señal de pausa.",
+          "accessibility": "Pregunta y respuesta pueden hacerse con sonido, expresión facial, manos, torso, pies o ruedas.",
+          "teacherTip": "Evita asignar conductas rígidas por género. Nombra funciones temporales: quien propone y quien responde."
+        },
+        {
+          "id": "lesson-15",
+          "order": 15,
+          "title": "Nuestra secuencia compartida",
+          "durationMinutes": 12,
+          "objective": "Coordinar saludo, vuelta y medialuna con otra persona.",
+          "why": "Unir elementos en pareja muestra qué acuerdos funcionan. La secuencia es una base que puede adaptarse, no una competencia.",
+          "diagram": "eight",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Acuerden el mapa",
+              "instruction": "Decidan lugar inicial, dirección, distancia y señal de término antes de moverse.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Tres figuras",
+              "instruction": "Realicen saludo, vuelta y medialuna a velocidad lenta. Deténganse si el espacio deja de ser claro.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Retroalimentación amable",
+              "instruction": "Cada persona dice algo que funcionó y una cosa que pueden simplificar en el próximo intento.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Repitan cambiando quién entrega las señales, sin alterar el acuerdo de seguridad.",
+          "safety": "No practiquen cerca de escaleras, desniveles ni tránsito de otras personas.",
+          "accessibility": "Reduzcan recorridos, mantengan una persona fija o usen una referencia sonora para coordinar.",
+          "teacherTip": "Forma parejas de manera respetuosa y permite practicar solo o en trío. Nadie debe quedar expuesto por no querer contacto."
+        }
+      ]
+    },
+    {
+      "id": "level-06",
+      "order": 6,
+      "title": "Zapateo y remate",
+      "subtitle": "Aumento la energía con control y construyo un final claro.",
+      "emoji": "⚡",
+      "lessons": [
+        {
+          "id": "lesson-16",
+          "order": 16,
+          "title": "Zapateo sin golpes",
+          "durationMinutes": 12,
+          "objective": "Explorar acentos de pies con bajo impacto.",
+          "why": "Zapatear agrega energía y carácter, pero el sonido no necesita venir de golpes fuertes. Control y musicalidad protegen el cuerpo.",
+          "diagram": "steps",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Revisa superficie y calzado",
+              "instruction": "Usa un piso firme, no resbaloso, y calzado sujeto. Prueba dos apoyos suaves antes de continuar.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Acentos alternados",
+              "instruction": "Marca acentos bajos alternando pies. Mantén rodillas flexibles y el peso centrado.",
+              "minutes": 5
+            },
+            {
+              "type": "create",
+              "title": "Energía sin volumen",
+              "instruction": "Haz una versión silenciosa y otra un poco más sonora. Conserva la misma intención en ambas.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Mantén seis pulsos de zapateo controlado y termina estable, sin salto.",
+          "safety": "Detente ante dolor o vibración incómoda. Nunca practiques impacto fuerte sobre cemento o piso inestable.",
+          "accessibility": "Marca acentos con manos, palmas sobre muslos, ruedas, voz o instrumento de percusión suave.",
+          "teacherTip": "No premies el mayor volumen. Observa control, alternancia, respiración y capacidad de detenerse."
+        },
+        {
+          "id": "lesson-17",
+          "order": 17,
+          "title": "Vuelta final y remate",
+          "durationMinutes": 12,
+          "objective": "Cerrar una secuencia de forma coordinada y reconocible.",
+          "why": "Un final claro permite que quienes bailan y observan compartan el mismo momento. El cierre se anticipa, no aparece de sorpresa.",
+          "diagram": "circle",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Elige la señal final",
+              "instruction": "Acuerden un gesto de pañuelo, mirada o voz que anuncie la última vuelta.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Vuelta y encuentro",
+              "instruction": "Recorran una vuelta pequeña y terminen de frente, a distancia cómoda y con ambos pies estables.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Congela y respira",
+              "instruction": "Sostén el final solo dos segundos, respira y relaja. Ajusta si la postura se siente forzada.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Consigan tres finales sincronizados usando señales distintas.",
+          "safety": "No frenes con una torsión brusca. Reduce el recorrido antes de la posición final.",
+          "accessibility": "El remate puede ser una pausa simultánea, un gesto de manos o una orientación compartida.",
+          "teacherTip": "Explica la diferencia entre convención escénica y encuentro social. Acepta cierres coherentes con la variante enseñada."
+        },
+        {
+          "id": "lesson-18",
+          "order": 18,
+          "title": "Mi primer pie completo",
+          "durationMinutes": 12,
+          "objective": "Interpretar una secuencia introductoria completa con pausas de revisión.",
+          "why": "Completar un pie permite sentir la continuidad del baile. El objetivo no es hacerlo perfecto, sino mantener intención, espacio y escucha.",
+          "diagram": "eight",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Recuerda el mapa",
+              "instruction": "Nombra en orden: saludo, vuelta, medialunas o recorrido, escobillado, zapateo y remate. Adapta el orden a la variante indicada por quien enseña.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Versión lenta",
+              "instruction": "Realiza la secuencia con conteo o pulso visual. Usa pasos simples cuando olvides una figura.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Un logro y un foco",
+              "instruction": "Elige un momento que disfrutaste y solo un aspecto para practicar la próxima vez.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Baila la secuencia completa sin detenerte; si olvidas algo, camina al pulso hasta retomar.",
+          "safety": "Descansa al menos un minuto entre intentos y toma agua. No repitas si aparece fatiga o dolor.",
+          "accessibility": "Crea un pie equivalente con los movimientos disponibles para ti, conservando inicio, diálogo, aumento de energía y cierre.",
+          "teacherTip": "Usa música propia, autorizada o de dominio permitido. La aplicación no incluye grabaciones para evitar usos sin licencia."
+        }
+      ]
+    },
+    {
+      "id": "level-07",
+      "order": 7,
+      "title": "Música y creación",
+      "subtitle": "Escucho instrumentos, descubro la poesía y creo decisiones propias.",
+      "emoji": "🎶",
+      "lessons": [
+        {
+          "id": "lesson-19",
+          "order": 19,
+          "title": "¿Qué instrumento escucho?",
+          "durationMinutes": 12,
+          "objective": "Identificar timbres y relacionarlos con el movimiento.",
+          "why": "Guitarras, voces, percusiones, acordeón, arpa u otros instrumentos pueden aparecer según la interpretación. Escuchar sus cambios enriquece el baile.",
+          "diagram": "wave",
+          "activities": [
+            {
+              "type": "listen",
+              "title": "Caza de sonidos",
+              "instruction": "Con una grabación autorizada, anota o nombra cada voz e instrumento que distingas. No importa si dudas.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Un sonido, un gesto",
+              "instruction": "Elige un gesto para la voz y otro para la percusión. Cambia cuando tu oído los encuentre.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Primer plano musical",
+              "instruction": "Cuenta qué sonido guía más tus pies y cuál guía el pañuelo. Compara con otra persona.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Mantén el pulso mientras cambias el gesto cuando aparece otro timbre.",
+          "safety": "Conserva el volumen a un nivel en el que aún puedas escuchar una indicación de pausa.",
+          "accessibility": "Usa vibración, espectro visual, señas o descripción de otra persona si la escucha no es tu vía principal.",
+          "teacherTip": "Selecciona ejemplos de distintas zonas y agrupaciones. Documenta intérprete, procedencia y licencia."
+        },
+        {
+          "id": "lesson-20",
+          "order": 20,
+          "title": "La cueca también cuenta",
+          "durationMinutes": 12,
+          "objective": "Reconocer que la cueca transmite historias y poesía oral.",
+          "why": "Sus letras pueden hablar de lugares, afectos, vida cotidiana y memoria. La forma tradicional incluye cuarteta, seguidilla y remate, pero aquí comenzamos jugando con ideas propias.",
+          "diagram": "free",
+          "activities": [
+            {
+              "type": "discover",
+              "title": "Encuentra la historia",
+              "instruction": "Escucha o lee una letra apta para la edad y responde: ¿quién habla, de qué lugar y qué emoción aparece?",
+              "minutes": 3
+            },
+            {
+              "type": "create",
+              "title": "Dos versos de mi lugar",
+              "instruction": "Escribe dos líneas breves sobre tu barrio, ciudad, paisaje o familia. Todavía no necesitas medir sílabas ni rimar.",
+              "minutes": 5
+            },
+            {
+              "type": "move",
+              "title": "Baila una palabra",
+              "instruction": "Elige una palabra importante de tus versos y crea un gesto para expresarla con el pañuelo.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Comparte tus dos versos y pregunta qué imagen imaginó otra persona.",
+          "safety": "No compartas en internet nombres completos, direcciones ni información privada dentro de una letra.",
+          "accessibility": "Puedes dictar, dibujar, grabar localmente con ayuda adulta o comunicar la idea mediante señas y movimiento.",
+          "teacherTip": "La estructura poética merece un módulo avanzado propio. En esta edad, prioriza comprensión, voz y vínculo territorial."
+        },
+        {
+          "id": "lesson-21",
+          "order": 21,
+          "title": "Creo una variación",
+          "durationMinutes": 12,
+          "objective": "Tomar decisiones expresivas dentro de una estructura compartida.",
+          "why": "Aprender una tradición también implica interpretarla. Crear no significa olvidar acuerdos, sino elegir con intención y respeto.",
+          "diagram": "semicircle",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Base y espacio creativo",
+              "instruction": "Elige una secuencia conocida y marca un solo momento donde cada persona podrá variar.",
+              "minutes": 3
+            },
+            {
+              "type": "create",
+              "title": "Tres posibilidades",
+              "instruction": "Inventa tres gestos de pañuelo o recorridos pequeños. Prueba y conserva el que se sienta más claro.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Explica tu elección",
+              "instruction": "Cuenta qué querías expresar y cómo mantuviste el diálogo con la otra persona.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Realiza dos versiones de la misma secuencia y haz que ambas tengan inicio y final claros.",
+          "safety": "Una variación no debe aumentar de pronto la velocidad, invadir la distancia ni incluir acrobacias.",
+          "accessibility": "La variación puede cambiar dirección, nivel, ritmo, parte del cuerpo, sonido o pausa.",
+          "teacherTip": "Separa criterios: seguridad y acuerdo son necesarios; tamaño, estilo y expresividad admiten diversidad."
+        }
+      ]
+    },
+    {
+      "id": "level-08",
+      "order": 8,
+      "title": "Cuecas de Chile y presentación",
+      "subtitle": "Reconozco diversidad, ensayo con propósito y comparto lo aprendido.",
+      "emoji": "🇨🇱",
+      "lessons": [
+        {
+          "id": "lesson-22",
+          "order": 22,
+          "title": "No existe una sola cueca",
+          "durationMinutes": 12,
+          "objective": "Comparar expresiones de cueca sin ordenarlas de mejor a peor.",
+          "why": "En Chile se reconocen expresiones nortinas, chilotas, de la zona central, urbanas y otras prácticas locales. Comparten parentescos, pero cambian instrumentos, energía, vestuario, letra y movimiento.",
+          "diagram": "free",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Dos ejemplos con fuente",
+              "instruction": "Mira dos registros autorizados de territorios o estilos distintos. Anota lugar, intérpretes y fecha si están disponibles.",
+              "minutes": 3
+            },
+            {
+              "type": "discover",
+              "title": "Parecidos y diferencias",
+              "instruction": "Encuentra dos elementos compartidos y dos diferencias en sonido, movimiento o contexto.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Pregunta con respeto",
+              "instruction": "Escribe una pregunta que harías a una persona cultora para comprender mejor su práctica.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Explica por qué “diferente” no significa “incorrecto”.",
+          "safety": "No imites movimientos complejos de un video sin guía, espacio y preparación adecuados.",
+          "accessibility": "La comparación puede hacerse con audio, fotografías descritas, relatos, objetos o demostración cercana.",
+          "teacherTip": "Invita voces territoriales y acredita su conocimiento. No conviertas una muestra breve en definición total de una comunidad."
+        },
+        {
+          "id": "lesson-23",
+          "order": 23,
+          "title": "Ensayo con propósito",
+          "durationMinutes": 12,
+          "objective": "Planificar un ensayo breve, seguro y útil.",
+          "why": "Ensayar no es repetir hasta agotarse. Es elegir un foco, probar, observar y descansar para mejorar con sentido.",
+          "diagram": "eight",
+          "activities": [
+            {
+              "type": "reflect",
+              "title": "Elige un foco",
+              "instruction": "Selecciona solo uno: pulso, recorrido, diálogo, zapateo o final. Define cómo sabrás si mejoró.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Dos intentos",
+              "instruction": "Realiza la secuencia, descansa y repite aplicando un cambio. No agregues nuevas exigencias.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Evidencia amable",
+              "instruction": "Describe qué cambió sin usar “soy malo” o “soy bueno”. Habla de acciones observables.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Termina el ensayo sabiendo cuál será tu siguiente foco, sin repetir una tercera vez.",
+          "safety": "Incluye calentamiento breve, agua, espacio despejado y una pausa real entre intentos.",
+          "accessibility": "El foco puede ser expresivo, musical, espacial o colaborativo; no necesita depender de destreza de pies.",
+          "teacherTip": "Evita grabar menores por defecto. Si una familia autoriza un registro, define finalidad, acceso y fecha de eliminación."
+        },
+        {
+          "id": "lesson-24",
+          "order": 24,
+          "title": "Presento y celebro",
+          "durationMinutes": 12,
+          "objective": "Compartir una interpretación y reconocer el proceso completo.",
+          "why": "Una presentación puede ser frente a una familia, un curso, una pareja o incluso para uno mismo. Celebrar significa reconocer aprendizaje y comunidad, no buscar perfección.",
+          "diagram": "circle",
+          "activities": [
+            {
+              "type": "observe",
+              "title": "Prepara el encuentro",
+              "instruction": "Revisa espacio, música autorizada, vestuario cómodo, acuerdos de pareja y forma de detenerse.",
+              "minutes": 3
+            },
+            {
+              "type": "move",
+              "title": "Tu interpretación",
+              "instruction": "Baila una secuencia completa o una versión adaptada. Si algo se olvida, vuelve al pulso y continúa.",
+              "minutes": 5
+            },
+            {
+              "type": "reflect",
+              "title": "Círculo de celebración",
+              "instruction": "Nombra algo que aprendiste, alguien que te ayudó y una curiosidad que quieres seguir explorando.",
+              "minutes": 4
+            }
+          ],
+          "challenge": "Enseña a otra persona un gesto, paso o acuerdo de seguridad que te haya servido.",
+          "safety": "Una presentación nunca obliga a bailar, grabarse, usar una vestimenta específica ni soportar dolor.",
+          "accessibility": "La presentación puede ser en vivo, narrada, dibujada, musical, sentada, individual o acompañada.",
+          "teacherTip": "Evalúa proceso, cuidado, escucha, comprensión cultural y reflexión. No uses apariencia corporal ni costo del vestuario como criterio."
+        }
+      ]
+    }
+  ]
+}

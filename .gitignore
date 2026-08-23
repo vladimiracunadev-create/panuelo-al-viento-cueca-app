@@ -1,0 +1,30 @@
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+
+# Generated platform files are created by tool/bootstrap.* and CI.
+android/
+windows/
+release-artifacts/
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Signing and secrets
+*.jks
+*.keystore
+key.properties
+.env
+
+# Documento de trabajo local; no forma parte del producto publicado.
+MASTER_PROMPT.md

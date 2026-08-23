@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Pañuelo al Viento</title>
+  <desc id="desc">Un pañuelo blanco en movimiento sobre un cielo azul y un sol cálido.</desc>
+  <rect width="512" height="512" rx="112" fill="#F7EFE3"/>
+  <circle cx="397" cy="112" r="52" fill="#F2B544"/>
+  <path d="M88 340c72-8 98-72 132-128 30-49 76-70 188-41-54 21-67 64-69 108-2 55-34 91-107 91-62 0-94-22-144-30Z" fill="#FFFFFF" stroke="#173B63" stroke-width="18" stroke-linejoin="round"/>
+  <path d="M98 342c73-3 120 36 151 87" fill="none" stroke="#D84A4A" stroke-width="20" stroke-linecap="round"/>
+  <path d="M79 394c59-5 106 17 143 61" fill="none" stroke="#2B6F9F" stroke-width="20" stroke-linecap="round"/>
+</svg>
