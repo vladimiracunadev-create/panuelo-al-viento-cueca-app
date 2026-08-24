@@ -14,11 +14,13 @@ class ProgressRepository implements ProgressStore {
   static const _completedKey = 'completed_lessons_v1';
   final SharedPreferences _preferences;
 
+  @override
   Set<String> readCompletedLessonIds() {
     return (_preferences.getStringList(_completedKey) ?? const <String>[])
         .toSet();
   }
 
+  @override
   Future<void> writeCompletedLessonIds(Set<String> lessonIds) async {
     final ordered = lessonIds.toList(growable: false)..sort();
     final saved = await _preferences.setStringList(_completedKey, ordered);
@@ -27,6 +29,7 @@ class ProgressRepository implements ProgressStore {
     }
   }
 
+  @override
   Future<void> clear() async {
     final removed = await _preferences.remove(_completedKey);
     if (!removed) {
