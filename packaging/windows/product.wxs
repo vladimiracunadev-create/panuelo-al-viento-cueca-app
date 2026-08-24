@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product
+    Id="*"
+    Name="Pañuelo al Viento"
+    Language="1034"
+    Version="$(var.AppVersion)"
+    Manufacturer="Vladimir Acuña"
+    UpgradeCode="7C81FC5C-67A6-4F3A-A519-78019866B239">
+    <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" Platform="x64" />
+    <MajorUpgrade DowngradeErrorMessage="Ya existe una versión más reciente instalada." />
+    <MediaTemplate EmbedCab="yes" />
+    <Feature Id="MainFeature" Title="Pañuelo al Viento" Level="1">
+      <ComponentGroupRef Id="AppFiles" />
+      <ComponentRef Id="StartMenuShortcut" />
+    </Feature>
+  </Product>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="INSTALLFOLDER" Name="PanueloAlViento" />
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Pañuelo al Viento" />
+      </Directory>
+    </Directory>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="StartMenuShortcut" Guid="A011E009-6EDC-4A7B-83D1-41239EAE80A3">
+        <Shortcut
+          Id="ApplicationStartMenuShortcut"
+          Name="Pañuelo al Viento"
+          Description="Aplicación educativa de cueca"
+          Target="[INSTALLFOLDER]panuelo_al_viento.exe"
+          WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\PanueloAlViento" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

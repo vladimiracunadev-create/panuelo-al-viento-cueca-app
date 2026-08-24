@@ -150,7 +150,9 @@ jobs:
       - name: Crear instalador EXE
         shell: pwsh
         run: |
-          & 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' "/DMyAppVersion=$env:APP_VERSION" 'packaging/windows/installer.iss'
+          $sourceDir = (Resolve-Path 'build/windows/x64/runner/Release').Path
+          $outputDir = (Resolve-Path 'release-artifacts').Path
+          & 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' "/DMyAppVersion=$env:APP_VERSION" "/DSourceDir=$sourceDir" "/DOutputDir=$outputDir" 'packaging/windows/installer.iss'
       - name: Crear instalador MSI
         shell: pwsh
         run: |

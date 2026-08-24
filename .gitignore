@@ -9,9 +9,9 @@ build/
 coverage/
 
 # Generated platform files are created by tool/bootstrap.* and CI.
-android/
-windows/
-release-artifacts/
+/android/
+/windows/
+/release-artifacts/
 
 # Editors and operating systems
 .idea/
