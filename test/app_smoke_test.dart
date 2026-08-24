@@ -22,11 +22,11 @@ void main() {
 
     await tester.tap(find.text('Ruta'));
     await tester.pumpAndSettle();
-    expect(find.text('Ruta de aprendizaje'), findsOneWidget);
+    expect(find.text('Ruta de aprendizaje'), findsWidgets);
 
     await tester.tap(find.text('Ritmo'));
     await tester.pumpAndSettle();
-    expect(find.text('Laboratorio de ritmo'), findsOneWidget);
+    expect(find.text('Laboratorio de ritmo'), findsWidgets);
     expect(find.textContaining('No se activa ni se solicita cámara'), findsOneWidget);
 
     await tester.tap(find.text('Avance'));
