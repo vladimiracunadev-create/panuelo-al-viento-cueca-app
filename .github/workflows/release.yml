@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Etiqueta de la release (ej. v0.1.0)"
+        description: "Etiqueta de la release (debe ser v + la versión de pubspec.yaml)"
         required: true
         default: "v0.1.0"
 
@@ -20,27 +20,64 @@ concurrency:
 
 env:
   TAG_NAME: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
-  APP_VERSION: "0.1.0"
+  FLUTTER_VERSION: "3.44.6"
 
 jobs:
+  # La versión operativa sale de pubspec.yaml, nunca de un valor escrito a mano
+  # en este archivo: si el tag y el manifiesto no coinciden, la release no sale.
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      app_version: ${{ steps.resolve.outputs.app_version }}
+      build_number: ${{ steps.resolve.outputs.build_number }}
+      notes_path: ${{ steps.resolve.outputs.notes_path }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: resolve
+        name: Resolver y comprobar la versión
+        run: |
+          APP_VERSION="$(node tool/app_version.mjs version)"
+          BUILD_NUMBER="$(node tool/app_version.mjs build)"
+          echo "pubspec.yaml declara $APP_VERSION+$BUILD_NUMBER"
+          echo "El tag solicitado es $TAG_NAME"
+
+          if [ "$TAG_NAME" != "v$APP_VERSION" ]; then
+            echo "::error::El tag $TAG_NAME no corresponde a la versión v$APP_VERSION declarada en pubspec.yaml."
+            exit 1
+          fi
+
+          NOTES_PATH="docs/releases/${TAG_NAME}.md"
+          if [ ! -f "$NOTES_PATH" ]; then
+            echo "::error::Faltan las notas de publicación en $NOTES_PATH."
+            exit 1
+          fi
+
+          echo "app_version=$APP_VERSION" >> "$GITHUB_OUTPUT"
+          echo "build_number=$BUILD_NUMBER" >> "$GITHUB_OUTPUT"
+          echo "notes_path=$NOTES_PATH" >> "$GITHUB_OUTPUT"
+
   quality:
+    needs: version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
       - run: flutter pub get
       - run: node tool/validate_repository.mjs
       - run: node tool/validate_curriculum.mjs
-      - run: dart format --output=none lib test tool
+      - run: dart format --output=none --set-exit-if-changed lib test tool
       - run: flutter analyze
       - run: flutter test --reporter expanded
 
   android:
-    needs: quality
+    needs: [version, quality]
     runs-on: ubuntu-latest
+    env:
+      APP_VERSION: ${{ needs.version.outputs.app_version }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -50,6 +87,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
       - name: Generar Android reproduciblemente
         run: |
@@ -91,12 +129,19 @@ jobs:
           node tool/configure_android_signing.mjs
       - name: Compilar APK universal
         run: flutter build apk --release
-      - name: Verificar permisos y firma
+      - name: Auditar permisos en el manifiesto fuente
         run: |
           if grep -R -E "android.permission.(CAMERA|RECORD_AUDIO)" android/app/src; then
-            echo "Se detectó un permiso no autorizado de cámara o micrófono."
+            echo "::error::Se detectó un permiso no autorizado de cámara o micrófono."
             exit 1
           fi
+      - name: Verificar el APK compilado
+        run: |
+          node tool/verify_apk.mjs \
+            build/app/outputs/flutter-apk/app-release.apk \
+            "$APP_VERSION"
+      - name: Verificar la firma
+        run: |
           BUILD_TOOLS="$(ls -d "$ANDROID_SDK_ROOT"/build-tools/* | sort -V | tail -n1)"
           "$BUILD_TOOLS/apksigner" verify --verbose build/app/outputs/flutter-apk/app-release.apk
       - name: Preparar artefacto
@@ -110,13 +155,16 @@ jobs:
           if-no-files-found: error
 
   windows:
-    needs: quality
+    needs: [version, quality]
     runs-on: windows-latest
+    env:
+      APP_VERSION: ${{ needs.version.outputs.app_version }}
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
       - name: Generar Windows reproduciblemente
         shell: pwsh
@@ -138,6 +186,15 @@ jobs:
             throw "La aplicación terminó con código $($process.ExitCode)."
           }
           if (-not $process.HasExited) { Stop-Process -Id $process.Id }
+      - name: Comprobar la versión del ejecutable
+        shell: pwsh
+        run: |
+          $exe = Resolve-Path 'build/windows/x64/runner/Release/panuelo_al_viento.exe'
+          $info = (Get-Item $exe).VersionInfo
+          $info | Format-List ProductName, FileVersion, ProductVersion, CompanyName
+          if ($info.ProductVersion -notlike "$env:APP_VERSION*") {
+            throw "El ejecutable declara ProductVersion $($info.ProductVersion) y se esperaba $env:APP_VERSION."
+          }
       - name: Preparar versión portable
         shell: pwsh
         run: |
@@ -184,8 +241,10 @@ jobs:
           if-no-files-found: error
 
   publish:
-    needs: [android, windows]
+    needs: [version, android, windows]
     runs-on: ubuntu-latest
+    env:
+      APP_VERSION: ${{ needs.version.outputs.app_version }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -193,6 +252,23 @@ jobs:
           pattern: "*-release"
           path: release-assets
           merge-multiple: true
+      - name: Comprobar que los cuatro artefactos llevan la versión correcta
+        run: |
+          ls -l release-assets
+          for suffix in Android.apk Windows-Setup.exe Windows.msi Windows-portable.zip; do
+            name="PanueloAlViento-${APP_VERSION}-${suffix}"
+            if [ ! -f "release-assets/$name" ]; then
+              echo "::error::Falta el artefacto $name."
+              exit 1
+            fi
+            echo "presente $name"
+          done
+          extra="$(find release-assets -maxdepth 1 -type f ! -name "PanueloAlViento-${APP_VERSION}-*")"
+          if [ -n "$extra" ]; then
+            echo "::error::Artefactos con una versión distinta a ${APP_VERSION}:"
+            echo "$extra"
+            exit 1
+          fi
       - name: Checksums SHA-256
         working-directory: release-assets
         run: sha256sum * > SHA256SUMS.txt
@@ -201,7 +277,7 @@ jobs:
         with:
           tag_name: ${{ env.TAG_NAME }}
           name: "Pañuelo al Viento ${{ env.TAG_NAME }}"
-          body_path: docs/releases/v0.1.0.md
+          body_path: ${{ needs.version.outputs.notes_path }}
           files: release-assets/*
           fail_on_unmatched_files: true
           draft: false
