@@ -275,6 +275,7 @@ async function main() {
     await shot('07-privacidad');
 
     await boot({ dark: true });
+    await scroll(700); // deja a la vista las dos tarjetas de acción
     await shot('08-oscuro');
 
     await boot({ width: 1180, height: 780 });
@@ -286,8 +287,25 @@ async function main() {
   } finally {
     chrome?.kill();
     server?.close();
-    if (!KEEP) rmSync(workDir, { recursive: true, force: true });
-    else console.log(`Directorio temporal conservado en ${workDir}.`);
+    if (KEEP) {
+      console.log(`Directorio temporal conservado en ${workDir}.`);
+    } else {
+      // Chrome tarda un momento en soltar su perfil; en Windows borrarlo
+      // demasiado pronto lanza EPERM. Un temporal que sobrevive no es motivo
+      // para dar por fallida una captura que ya se escribió.
+      for (let attempt = 0; attempt < 5; attempt += 1) {
+        try {
+          rmSync(workDir, { recursive: true, force: true });
+          break;
+        } catch {
+          if (attempt === 4) {
+            console.warn(`No se pudo borrar el temporal ${workDir}.`);
+            break;
+          }
+          await sleep(1000);
+        }
+      }
+    }
   }
 }
 
