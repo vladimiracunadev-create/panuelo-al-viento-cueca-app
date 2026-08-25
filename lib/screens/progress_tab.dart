@@ -27,7 +27,10 @@ class ProgressTab extends StatelessWidget {
                   children: [
                     _HeroProgress(state: state),
                     const SizedBox(height: 20),
-                    Text('Progreso por nivel', style: Theme.of(context).textTheme.headlineMedium),
+                    Text(
+                      'Progreso por nivel',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
                     const SizedBox(height: 12),
                     for (final level in state.curriculum.levels) ...[
                       Card(
@@ -35,13 +38,22 @@ class ProgressTab extends StatelessWidget {
                           padding: const EdgeInsets.all(18),
                           child: Row(
                             children: [
-                              Text(level.emoji, style: const TextStyle(fontSize: 30)),
+                              Text(
+                                level.emoji,
+                                style: const TextStyle(fontSize: 30),
+                              ),
                               const SizedBox(width: 14),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(level.title, style: Theme.of(context).textTheme.titleMedium),
+                                    Text(
+                                      level.title,
+                                      style:
+                                          Theme.of(
+                                            context,
+                                          ).textTheme.titleMedium,
+                                    ),
                                     const SizedBox(height: 8),
                                     LinearProgressIndicator(
                                       value: state.levelProgress(level),
@@ -52,7 +64,9 @@ class ProgressTab extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(width: 12),
-                              Text('${(state.levelProgress(level) * 100).round()}%'),
+                              Text(
+                                '${(state.levelProgress(level) * 100).round()}%',
+                              ),
                             ],
                           ),
                         ),
@@ -85,13 +99,15 @@ class ProgressTab extends StatelessWidget {
                             _CapabilityLine(
                               icon: Icons.mic_off_outlined,
                               title: 'Micrófono: no usado',
-                              detail: 'La aplicación no solicita permiso ni escucha audio.',
+                              detail:
+                                  'La aplicación no solicita permiso ni escucha audio.',
                             ),
                             SizedBox(height: 10),
                             _CapabilityLine(
                               icon: Icons.videocam_off_outlined,
                               title: 'Cámara: no usada',
-                              detail: 'La aplicación no solicita permiso, toma fotos ni graba video.',
+                              detail:
+                                  'La aplicación no solicita permiso, toma fotos ni graba video.',
                             ),
                           ],
                         ),
@@ -116,20 +132,23 @@ class ProgressTab extends StatelessWidget {
   Future<void> _confirmReset(BuildContext context) async {
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('¿Reiniciar todo el avance?'),
-        content: const Text('Se desmarcarán las 24 clases en este dispositivo.'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancelar'),
+      builder:
+          (context) => AlertDialog(
+            title: const Text('¿Reiniciar todo el avance?'),
+            content: const Text(
+              'Se desmarcarán las 24 clases en este dispositivo.',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text('Cancelar'),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text('Reiniciar'),
+              ),
+            ],
           ),
-          FilledButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Reiniciar'),
-          ),
-        ],
-      ),
     );
     if (confirmed == true) {
       await state.resetProgress();
@@ -189,8 +208,14 @@ class _HeroProgress extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  CircularProgressIndicator(value: state.progress, strokeWidth: 12),
-                  Text('$percent%', style: Theme.of(context).textTheme.titleLarge),
+                  CircularProgressIndicator(
+                    value: state.progress,
+                    strokeWidth: 12,
+                  ),
+                  Text(
+                    '$percent%',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                 ],
               ),
             ),
@@ -200,11 +225,15 @@ class _HeroProgress extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    state.progress == 1 ? '¡Ruta completada!' : 'Cada paso cuenta',
+                    state.progress == 1
+                        ? '¡Ruta completada!'
+                        : 'Cada paso cuenta',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 8),
-                  Text('${state.completedCount} clases listas. Repetir también es avanzar.'),
+                  Text(
+                    '${state.completedCount} clases listas. Repetir también es avanzar.',
+                  ),
                 ],
               ),
             ),

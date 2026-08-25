@@ -70,9 +70,7 @@ class Lesson {
       diagram: json['diagram'] as String,
       activities: (json['activities'] as List<dynamic>)
           .map(
-            (item) => LearningActivity.fromJson(
-              item as Map<String, dynamic>,
-            ),
+            (item) => LearningActivity.fromJson(item as Map<String, dynamic>),
           )
           .toList(growable: false),
       challenge: json['challenge'] as String,
@@ -127,10 +125,9 @@ class Curriculum {
   final String audience;
   final List<LearningLevel> levels;
 
-  List<Lesson> get lessons => levels
-      .expand((level) => level.lessons)
-      .toList(growable: false)
-    ..sort((a, b) => a.order.compareTo(b.order));
+  List<Lesson> get lessons =>
+      levels.expand((level) => level.lessons).toList(growable: false)
+        ..sort((a, b) => a.order.compareTo(b.order));
 
   factory Curriculum.fromJson(Map<String, dynamic> json) {
     return Curriculum(
@@ -138,9 +135,7 @@ class Curriculum {
       title: json['title'] as String,
       audience: json['audience'] as String,
       levels: (json['levels'] as List<dynamic>)
-          .map(
-            (item) => LearningLevel.fromJson(item as Map<String, dynamic>),
-          )
+          .map((item) => LearningLevel.fromJson(item as Map<String, dynamic>))
           .toList(growable: false),
     );
   }

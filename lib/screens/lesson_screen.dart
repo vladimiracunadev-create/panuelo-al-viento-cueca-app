@@ -5,11 +5,7 @@ import '../state/app_state.dart';
 import '../widgets/movement_diagram.dart';
 
 class LessonScreen extends StatefulWidget {
-  const LessonScreen({
-    required this.state,
-    required this.lesson,
-    super.key,
-  });
+  const LessonScreen({required this.state, required this.lesson, super.key});
 
   final AppState state;
   final Lesson lesson;
@@ -55,7 +51,10 @@ class _LessonScreenState extends State<LessonScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(lesson.title, style: Theme.of(context).textTheme.displaySmall),
+                    Text(
+                      lesson.title,
+                      style: Theme.of(context).textTheme.displaySmall,
+                    ),
                     const SizedBox(height: 8),
                     Text(
                       '${lesson.durationMinutes} minutos · ${lesson.objective}',
@@ -79,9 +78,16 @@ class _LessonScreenState extends State<LessonScreen> {
                     const SizedBox(height: 20),
                     MovementDiagram(pattern: lesson.diagram),
                     const SizedBox(height: 28),
-                    Text('Hazlo paso a paso', style: Theme.of(context).textTheme.headlineMedium),
+                    Text(
+                      'Hazlo paso a paso',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
                     const SizedBox(height: 12),
-                    for (var index = 0; index < lesson.activities.length; index++)
+                    for (
+                      var index = 0;
+                      index < lesson.activities.length;
+                      index++
+                    )
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),
                         child: _ActivityTile(
@@ -89,7 +95,9 @@ class _LessonScreenState extends State<LessonScreen> {
                           activity: lesson.activities[index],
                           checked: _activityChecks[index],
                           onChanged: (value) {
-                            setState(() => _activityChecks[index] = value ?? false);
+                            setState(
+                              () => _activityChecks[index] = value ?? false,
+                            );
                           },
                         ),
                       ),
@@ -119,11 +127,12 @@ class _LessonScreenState extends State<LessonScreen> {
                     ),
                     const SizedBox(height: 24),
                     FilledButton.icon(
-                      onPressed: _allActivitiesChecked
-                          ? completed
-                              ? _finishRepeat
-                              : _complete
-                          : null,
+                      onPressed:
+                          _allActivitiesChecked
+                              ? completed
+                                  ? _finishRepeat
+                                  : _complete
+                              : null,
                       icon: Icon(
                         completed
                             ? Icons.replay_rounded
@@ -135,8 +144,8 @@ class _LessonScreenState extends State<LessonScreen> {
                                 ? 'Terminar esta repetición'
                                 : 'Completar esta clase'
                             : completed
-                                ? 'Repite y marca los tres pasos'
-                                : 'Marca los tres pasos para terminar',
+                            ? 'Repite y marca los tres pasos'
+                            : 'Marca los tres pasos para terminar',
                       ),
                     ),
                   ],
@@ -156,17 +165,20 @@ class _LessonScreenState extends State<LessonScreen> {
     }
     await showDialog<void>(
       context: context,
-      builder: (context) => AlertDialog(
-        icon: const Icon(Icons.celebration_rounded, size: 48),
-        title: const Text('¡Clase completada!'),
-        content: const Text('Tu progreso quedó guardado en este dispositivo.'),
-        actions: [
-          FilledButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Continuar'),
+      builder:
+          (context) => AlertDialog(
+            icon: const Icon(Icons.celebration_rounded, size: 48),
+            title: const Text('¡Clase completada!'),
+            content: const Text(
+              'Tu progreso quedó guardado en este dispositivo.',
+            ),
+            actions: [
+              FilledButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('Continuar'),
+              ),
+            ],
           ),
-        ],
-      ),
     );
     if (mounted) {
       setState(() {});
@@ -176,7 +188,9 @@ class _LessonScreenState extends State<LessonScreen> {
   void _finishRepeat() {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('¡Buena práctica! Tu avance anterior se mantiene guardado.'),
+        content: Text(
+          '¡Buena práctica! Tu avance anterior se mantiene guardado.',
+        ),
       ),
     );
     setState(() {

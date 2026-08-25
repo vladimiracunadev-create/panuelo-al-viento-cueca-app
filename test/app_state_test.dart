@@ -34,23 +34,26 @@ void main() {
     expect(state.completedLessonIds, isEmpty);
   });
 
-  test('solo borra el avance en memoria después de borrar el guardado', () async {
-    final store = _MemoryProgressStore(values: {'lesson-01'});
-    final state = AppState(
-      curriculumRepository: const CurriculumRepository(),
-      progressRepository: store,
-    );
-    await state.load();
-    store.failClears = true;
+  test(
+    'solo borra el avance en memoria después de borrar el guardado',
+    () async {
+      final store = _MemoryProgressStore(values: {'lesson-01'});
+      final state = AppState(
+        curriculumRepository: const CurriculumRepository(),
+        progressRepository: store,
+      );
+      await state.load();
+      store.failClears = true;
 
-    await expectLater(state.resetProgress(), throwsStateError);
-    expect(state.completedLessonIds, {'lesson-01'});
-  });
+      await expectLater(state.resetProgress(), throwsStateError);
+      expect(state.completedLessonIds, {'lesson-01'});
+    },
+  );
 }
 
 class _MemoryProgressStore implements ProgressStore {
   _MemoryProgressStore({Set<String>? values, this.failWrites = false})
-      : values = {...?values};
+    : values = {...?values};
 
   Set<String> values;
   bool failWrites;

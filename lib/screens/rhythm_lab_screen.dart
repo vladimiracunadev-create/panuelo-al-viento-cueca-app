@@ -24,9 +24,9 @@ class _RhythmLabScreenState extends State<RhythmLabScreen> {
   _PulsePattern _pattern = _PulsePattern.sixEight;
 
   List<int> get _accents => switch (_pattern) {
-        _PulsePattern.sixEight => const [0, 3],
-        _PulsePattern.threeFour => const [0, 2, 4],
-      };
+    _PulsePattern.sixEight => const [0, 3],
+    _PulsePattern.threeFour => const [0, 2, 4],
+  };
 
   @override
   void dispose() {
@@ -89,7 +89,8 @@ class _RhythmLabScreenState extends State<RhythmLabScreen> {
                               liveRegion: true,
                               label: 'Pulso ${_pulse + 1} de 6',
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: List.generate(6, (index) {
                                   final active = _playing && index == _pulse;
                                   final accent = _accents.contains(index);
@@ -100,19 +101,29 @@ class _RhythmLabScreenState extends State<RhythmLabScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: active
-                                          ? Theme.of(context).colorScheme.secondary
-                                          : accent
-                                              ? Theme.of(context).colorScheme.tertiaryContainer
-                                              : Theme.of(context).colorScheme.surfaceContainerHighest,
+                                      color:
+                                          active
+                                              ? Theme.of(
+                                                context,
+                                              ).colorScheme.secondary
+                                              : accent
+                                              ? Theme.of(
+                                                context,
+                                              ).colorScheme.tertiaryContainer
+                                              : Theme.of(context)
+                                                  .colorScheme
+                                                  .surfaceContainerHighest,
                                     ),
                                     child: Text(
                                       '${index + 1}',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w800,
-                                        color: active
-                                            ? Theme.of(context).colorScheme.onSecondary
-                                            : null,
+                                        color:
+                                            active
+                                                ? Theme.of(
+                                                  context,
+                                                ).colorScheme.onSecondary
+                                                : null,
                                       ),
                                     ),
                                   );
@@ -120,7 +131,10 @@ class _RhythmLabScreenState extends State<RhythmLabScreen> {
                               ),
                             ),
                             const SizedBox(height: 34),
-                            Text('${_bpm.round()} pulsos por minuto', style: Theme.of(context).textTheme.titleLarge),
+                            Text(
+                              '${_bpm.round()} pulsos por minuto',
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
                             Slider(
                               value: _bpm,
                               min: 60,
@@ -141,13 +155,16 @@ class _RhythmLabScreenState extends State<RhythmLabScreen> {
                               children: [
                                 FilterChip(
                                   selected: _sound,
-                                  onSelected: (value) => setState(() => _sound = value),
+                                  onSelected:
+                                      (value) => setState(() => _sound = value),
                                   avatar: const Icon(Icons.volume_up_outlined),
                                   label: const Text('Sonido'),
                                 ),
                                 FilterChip(
                                   selected: _vibration,
-                                  onSelected: (value) => setState(() => _vibration = value),
+                                  onSelected:
+                                      (value) =>
+                                          setState(() => _vibration = value),
                                   avatar: const Icon(Icons.vibration_rounded),
                                   label: const Text('Vibración'),
                                 ),
@@ -156,7 +173,11 @@ class _RhythmLabScreenState extends State<RhythmLabScreen> {
                             const SizedBox(height: 24),
                             FilledButton.icon(
                               onPressed: _toggle,
-                              icon: Icon(_playing ? Icons.stop_rounded : Icons.play_arrow_rounded),
+                              icon: Icon(
+                                _playing
+                                    ? Icons.stop_rounded
+                                    : Icons.play_arrow_rounded,
+                              ),
                               label: Text(_playing ? 'Detener' : 'Comenzar'),
                             ),
                           ],
@@ -171,9 +192,17 @@ class _RhythmLabScreenState extends State<RhythmLabScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Juego de tres rondas', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18)),
+                            Text(
+                              'Juego de tres rondas',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w800,
+                                fontSize: 18,
+                              ),
+                            ),
                             SizedBox(height: 8),
-                            Text('1. Marca el pulso con las manos.\n2. Pásalo a pasos pequeños.\n3. Muévete sin mirar la pantalla y vuelve a comprobar.'),
+                            Text(
+                              '1. Marca el pulso con las manos.\n2. Pásalo a pasos pequeños.\n3. Muévete sin mirar la pantalla y vuelve a comprobar.',
+                            ),
                           ],
                         ),
                       ),
@@ -207,7 +236,9 @@ class _RhythmLabScreenState extends State<RhythmLabScreen> {
                             Icon(Icons.info_outline_rounded),
                             SizedBox(width: 12),
                             Expanded(
-                              child: Text('Este laboratorio simplifica el pulso para entrenar la escucha. La interpretación real cambia entre canciones y estilos; practica también con una persona conocedora y música autorizada.'),
+                              child: Text(
+                                'Este laboratorio simplifica el pulso para entrenar la escucha. La interpretación real cambia entre canciones y estilos; practica también con una persona conocedora y música autorizada.',
+                              ),
                             ),
                           ],
                         ),

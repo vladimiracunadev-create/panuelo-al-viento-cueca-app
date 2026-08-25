@@ -31,7 +31,11 @@ void main() {
         (sum, activity) => sum + activity.minutes,
       );
       expect(minutes, lesson.durationMinutes, reason: lesson.id);
-      expect(lesson.durationMinutes, inInclusiveRange(10, 15), reason: lesson.id);
+      expect(
+        lesson.durationMinutes,
+        inInclusiveRange(10, 15),
+        reason: lesson.id,
+      );
     }
   });
 

@@ -43,7 +43,11 @@ class HomeTab extends StatelessWidget {
                     const CircleAvatar(
                       radius: 43,
                       backgroundColor: AppColors.yellow,
-                      child: Icon(Icons.air_rounded, size: 48, color: AppColors.navy),
+                      child: Icon(
+                        Icons.air_rounded,
+                        size: 48,
+                        color: AppColors.navy,
+                      ),
                     ),
                     SizedBox(
                       width: 610,
@@ -52,14 +56,17 @@ class HomeTab extends StatelessWidget {
                         children: [
                           Text(
                             '¡Que baile el pañuelo!',
-                            style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  color: Colors.white,
-                                ),
+                            style: Theme.of(context).textTheme.displaySmall
+                                ?.copyWith(color: Colors.white),
                           ),
                           const SizedBox(height: 10),
                           const Text(
                             'Aprende cueca paso a paso, escucha el ritmo y crea tu propia manera de expresarte.',
-                            style: TextStyle(color: Colors.white, fontSize: 17, height: 1.4),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                              height: 1.4,
+                            ),
                           ),
                         ],
                       ),
@@ -70,7 +77,10 @@ class HomeTab extends StatelessWidget {
               const SizedBox(height: 22),
               _ProgressCard(state: state),
               const SizedBox(height: 28),
-              Text('Tu próxima clase', style: Theme.of(context).textTheme.headlineMedium),
+              Text(
+                'Tu próxima clase',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
               const SizedBox(height: 12),
               if (nextLesson != null)
                 LessonCard(
@@ -81,7 +91,10 @@ class HomeTab extends StatelessWidget {
               else
                 const _FinishedCard(),
               const SizedBox(height: 28),
-              Text('Practica a tu manera', style: Theme.of(context).textTheme.headlineMedium),
+              Text(
+                'Practica a tu manera',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
               const SizedBox(height: 12),
               LayoutBuilder(
                 builder: (context, constraints) {
@@ -90,7 +103,8 @@ class HomeTab extends StatelessWidget {
                     _ActionCard(
                       icon: Icons.route_rounded,
                       title: 'Explorar las 24 clases',
-                      subtitle: 'Puedes repetir cualquier clase cuando quieras.',
+                      subtitle:
+                          'Puedes repetir cualquier clase cuando quieras.',
                       color: Theme.of(context).colorScheme.primaryContainer,
                       onTap: onOpenRoute,
                     ),
@@ -104,7 +118,11 @@ class HomeTab extends StatelessWidget {
                   ];
                   if (stacked) {
                     return Column(
-                      children: [cards.first, const SizedBox(height: 12), cards.last],
+                      children: [
+                        cards.first,
+                        const SizedBox(height: 12),
+                        cards.last,
+                      ],
                     );
                   }
                   return Row(
@@ -169,9 +187,15 @@ class _ProgressCard extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Text('Tu recorrido', style: Theme.of(context).textTheme.titleLarge),
+                  child: Text(
+                    'Tu recorrido',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                 ),
-                Text('$percent%', style: Theme.of(context).textTheme.titleLarge),
+                Text(
+                  '$percent%',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
               ],
             ),
             const SizedBox(height: 12),
@@ -184,7 +208,9 @@ class _ProgressCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Text('${state.completedCount} de ${state.totalCount} clases completadas'),
+            Text(
+              '${state.completedCount} de ${state.totalCount} clases completadas',
+            ),
           ],
         ),
       ),
@@ -251,7 +277,11 @@ class _FinishedCard extends StatelessWidget {
           children: [
             Icon(Icons.celebration_rounded, size: 42),
             SizedBox(width: 16),
-            Expanded(child: Text('¡Completaste la ruta! Ahora puedes crear, enseñar y seguir practicando.')),
+            Expanded(
+              child: Text(
+                '¡Completaste la ruta! Ahora puedes crear, enseñar y seguir practicando.',
+              ),
+            ),
           ],
         ),
       ),

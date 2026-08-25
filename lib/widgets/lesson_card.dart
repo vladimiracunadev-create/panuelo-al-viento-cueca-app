@@ -30,24 +30,29 @@ class LessonCard extends StatelessWidget {
                 height: 46,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: completed
-                      ? colors.primaryContainer
-                      : colors.tertiaryContainer,
+                  color:
+                      completed
+                          ? colors.primaryContainer
+                          : colors.tertiaryContainer,
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: completed
-                    ? Icon(Icons.check_rounded, color: colors.primary)
-                    : Text(
-                        '${lesson.order}',
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                child:
+                    completed
+                        ? Icon(Icons.check_rounded, color: colors.primary)
+                        : Text(
+                          '${lesson.order}',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
               ),
               const SizedBox(width: 14),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(lesson.title, style: Theme.of(context).textTheme.titleMedium),
+                    Text(
+                      lesson.title,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                     const SizedBox(height: 4),
                     Text(
                       '${lesson.durationMinutes} min · ${lesson.objective}',

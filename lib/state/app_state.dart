@@ -8,8 +8,8 @@ class AppState extends ChangeNotifier {
   AppState({
     required CurriculumRepository curriculumRepository,
     required ProgressStore progressRepository,
-  })  : _curriculumRepository = curriculumRepository,
-        _progressRepository = progressRepository;
+  }) : _curriculumRepository = curriculumRepository,
+       _progressRepository = progressRepository;
 
   final CurriculumRepository _curriculumRepository;
   final ProgressStore _progressRepository;
@@ -54,9 +54,8 @@ class AppState extends ChangeNotifier {
     if (level.lessons.isEmpty) {
       return 0;
     }
-    final count = level.lessons
-        .where((lesson) => isCompleted(lesson.id))
-        .length;
+    final count =
+        level.lessons.where((lesson) => isCompleted(lesson.id)).length;
     return count / level.lessons.length;
   }
 

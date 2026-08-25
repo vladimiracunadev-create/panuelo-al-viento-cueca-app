@@ -32,10 +32,17 @@ class RouteTab extends StatelessWidget {
                   child: Card(
                     clipBehavior: Clip.antiAlias,
                     child: ExpansionTile(
-                      initiallyExpanded: index == 0 || (progress > 0 && progress < 1),
-                      tilePadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+                      initiallyExpanded:
+                          index == 0 || (progress > 0 && progress < 1),
+                      tilePadding: const EdgeInsets.symmetric(
+                        horizontal: 22,
+                        vertical: 12,
+                      ),
                       childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 18),
-                      leading: Text(level.emoji, style: const TextStyle(fontSize: 32)),
+                      leading: Text(
+                        level.emoji,
+                        style: const TextStyle(fontSize: 32),
+                      ),
                       title: Text(
                         'Nivel ${level.order} · ${level.title}',
                         style: Theme.of(context).textTheme.titleLarge,
@@ -53,15 +60,17 @@ class RouteTab extends StatelessWidget {
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute<void>(
-                                  builder: (_) => LessonScreen(
-                                    state: state,
-                                    lesson: lesson,
-                                  ),
+                                  builder:
+                                      (_) => LessonScreen(
+                                        state: state,
+                                        lesson: lesson,
+                                      ),
                                 ),
                               );
                             },
                           ),
-                          if (lesson != level.lessons.last) const SizedBox(height: 10),
+                          if (lesson != level.lessons.last)
+                            const SizedBox(height: 10),
                         ],
                       ],
                     ),
@@ -92,7 +101,10 @@ class _LevelProgress extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             CircularProgressIndicator(value: value, strokeWidth: 5),
-            Text('$percent', style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w800)),
+            Text(
+              '$percent',
+              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w800),
+            ),
           ],
         ),
       ),

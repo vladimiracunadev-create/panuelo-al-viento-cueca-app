@@ -52,7 +52,10 @@ class _StartupErrorApp extends StatelessWidget {
                     Text(
                       'No pudimos abrir la ruta de aprendizaje',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                     SizedBox(height: 10),
                     Text(

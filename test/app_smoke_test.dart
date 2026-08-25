@@ -8,7 +8,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('abre la ruta, el ritmo y el detalle de privacidad', (tester) async {
+  testWidgets('abre la ruta, el ritmo y el detalle de privacidad', (
+    tester,
+  ) async {
     SharedPreferences.setMockInitialValues({});
     final preferences = await SharedPreferences.getInstance();
     final state = AppState(
@@ -27,7 +29,10 @@ void main() {
     await tester.tap(find.text('Ritmo'));
     await tester.pumpAndSettle();
     expect(find.text('Laboratorio de ritmo'), findsWidgets);
-    expect(find.textContaining('No se activa ni se solicita cámara'), findsOneWidget);
+    expect(
+      find.textContaining('No se activa ni se solicita cámara'),
+      findsOneWidget,
+    );
 
     await tester.tap(find.text('Avance'));
     await tester.pumpAndSettle();

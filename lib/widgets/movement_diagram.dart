@@ -47,17 +47,21 @@ class _MovementPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final background = Paint()
-      ..color = darkMode ? const Color(0xFF22303C) : const Color(0xFFFFFBF6);
-    final border = Paint()
-      ..color = darkMode ? const Color(0xFF5B6B78) : const Color(0xFFD8CBB9)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
-    final route = Paint()
-      ..color = darkMode ? const Color(0xFFAED3F0) : AppColors.blue
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 5
-      ..strokeCap = StrokeCap.round;
+    final background =
+        Paint()
+          ..color =
+              darkMode ? const Color(0xFF22303C) : const Color(0xFFFFFBF6);
+    final border =
+        Paint()
+          ..color = darkMode ? const Color(0xFF5B6B78) : const Color(0xFFD8CBB9)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2;
+    final route =
+        Paint()
+          ..color = darkMode ? const Color(0xFFAED3F0) : AppColors.blue
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 5
+          ..strokeCap = StrokeCap.round;
 
     final stage = RRect.fromRectAndRadius(
       Offset.zero & size,
@@ -92,14 +96,22 @@ class _MovementPainter extends CustomPainter {
         break;
       case 'semicircle':
         canvas.drawArc(
-          Rect.fromCenter(center: left, width: size.width * .35, height: size.height * .62),
+          Rect.fromCenter(
+            center: left,
+            width: size.width * .35,
+            height: size.height * .62,
+          ),
           -math.pi / 2,
           math.pi,
           false,
           route,
         );
         canvas.drawArc(
-          Rect.fromCenter(center: right, width: size.width * .35, height: size.height * .62),
+          Rect.fromCenter(
+            center: right,
+            width: size.width * .35,
+            height: size.height * .62,
+          ),
           math.pi / 2,
           math.pi,
           false,

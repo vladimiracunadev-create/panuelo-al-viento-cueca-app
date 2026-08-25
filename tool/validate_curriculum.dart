@@ -6,7 +6,9 @@ void main() {
   final errors = <String>[];
 
   if (!file.existsSync()) {
-    stderr.writeln('No existe ${file.path}. Ejecuta desde la raíz del repositorio.');
+    stderr.writeln(
+      'No existe ${file.path}. Ejecuta desde la raíz del repositorio.',
+    );
     exitCode = 1;
     return;
   }
@@ -60,7 +62,9 @@ void main() {
       return sum + (activity['minutes'] as int? ?? 0);
     });
     if (activityMinutes != duration) {
-      errors.add('$id dura $duration min, pero sus actividades suman $activityMinutes.');
+      errors.add(
+        '$id dura $duration min, pero sus actividades suman $activityMinutes.',
+      );
     }
 
     for (final field in [
@@ -81,7 +85,8 @@ void main() {
   }
 
   final expectedOrders = {for (var index = 1; index <= 24; index++) index};
-  if (orders.length != expectedOrders.length || !orders.containsAll(expectedOrders)) {
+  if (orders.length != expectedOrders.length ||
+      !orders.containsAll(expectedOrders)) {
     errors.add('Los órdenes deben cubrir 1–24 sin saltos.');
   }
 
