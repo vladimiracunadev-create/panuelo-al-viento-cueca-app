@@ -2,11 +2,13 @@
 
 ## Resultado oficial
 
-El workflow de release genera un APK universal llamado `PanueloAlViento-0.1.0-Android.apk`. La versión mínima configurada es Android 7 (API 24).
+El workflow de release genera un APK universal llamado `PanueloAlViento-<versión>-Android.apk`, con la versión tomada de `pubspec.yaml`. La versión mínima configurada es Android 7 (API 24) y el paquete es `cl.panueloalviento.panuelo_al_viento`.
+
+El nombre del archivo no es la única garantía: antes de publicar, la release comprueba que el tag sea `v` + la versión del manifiesto y que el APK compilado declare esa misma versión por dentro.
 
 ## Requisitos locales
 
-- Flutter estable 3.29 o superior;
+- Flutter estable 3.44.6 (la versión fijada en CI; funciona desde 3.29);
 - JDK 17;
 - Android SDK y herramientas de compilación;
 - dispositivo físico con depuración USB o emulador.
@@ -61,12 +63,24 @@ Guárdala en un gestor seguro y conserva una copia de recuperación. No confirme
 
 ## Verificación del APK
 
+La comprobación completa, con una sola orden:
+
 ```bash
-apksigner verify --verbose PanueloAlViento-0.1.0-Android.apk
-apkanalyzer manifest permissions PanueloAlViento-0.1.0-Android.apk
+node tool/verify_apk.mjs PanueloAlViento-0.1.0-Android.apk 0.1.0
 ```
 
-El segundo comando no debe listar `android.permission.CAMERA` ni `android.permission.RECORD_AUDIO`.
+Comprueba el paquete, `versionName`, `versionCode`, `minSdkVersion`, los permisos del manifiesto **fusionado**, las arquitecturas nativas y que el currículo empaquetado tenga 8 niveles y 24 clases y coincida byte por byte con `assets/content/curriculum.json`. Ese último control es el que detecta el fallo silencioso: un APK que compila, se firma y cuadra en checksum pero se instala sin contenido.
+
+Sin segundo argumento toma la versión esperada de `pubspec.yaml`. Necesita las build-tools de Android en `ANDROID_SDK_ROOT`, o la ruta a `aapt2` en la variable `AAPT2`.
+
+Por separado, con las herramientas del SDK:
+
+```bash
+apksigner verify --verbose PanueloAlViento-0.1.0-Android.apk
+aapt2 dump badging PanueloAlViento-0.1.0-Android.apk | grep uses-permission
+```
+
+El segundo comando no debe listar `android.permission.CAMERA`, `android.permission.RECORD_AUDIO` ni `android.permission.INTERNET`. La única entrada esperada es `cl.panueloalviento.panuelo_al_viento.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`, generada por AndroidX, que no da acceso a ningún recurso.
 
 ## Prueba manual mínima
 

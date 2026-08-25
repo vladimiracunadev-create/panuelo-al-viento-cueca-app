@@ -1,5 +1,32 @@
 # Historial de cambios
 
+## No publicado
+
+Cambios de documentación, verificación y publicación. No modifican el comportamiento de la aplicación, así que `0.1.0` sigue siendo la versión instalable vigente.
+
+### Versión operativa de los artefactos
+
+- La versión de la release sale de `pubspec.yaml` y de ningún otro sitio; antes estaba escrita a mano en `release.yml`, de modo que un tag `v0.2.0` habría publicado archivos llamados `0.1.0`.
+- El workflow rechaza la publicación si el tag no es `v` + la versión del manifiesto, o si faltan las notas de esa versión.
+- Las notas de publicación se eligen por tag en vez de apuntar siempre a `docs/releases/v0.1.0.md`.
+- Nuevo `tool/verify_apk.mjs`: abre el APK compilado y comprueba paquete, `versionName`, `versionCode`, `minSdkVersion`, permisos del manifiesto fusionado, arquitecturas y que el currículo empaquetado coincida con el del repositorio.
+- La release comprueba también la `ProductVersion` del ejecutable Windows y que ninguno de los cuatro artefactos lleve una versión distinta.
+- Nuevo `tool/app_version.mjs` como única fuente de verdad de la versión, reutilizada por los validadores y por CI.
+
+### Verificación
+
+- `dart format` corre con `--set-exit-if-changed`: sin esa opción el paso pasaba siempre y no comprobaba nada. Los archivos Dart se reformatearon con el formateador vigente.
+- CI y release fijan Flutter 3.44.6 para que formato y compilación sean reproducibles.
+- `tool/validate_repository.mjs` deja de tener la versión escrita dentro y ahora comprueba coherencia entre `pubspec.yaml`, `CHANGELOG.md`, las notas de release y los nombres de artefacto del README, que las capturas existan y que las notas no lleven enlaces relativos.
+- `pubspec.lock` se versiona para que las dependencias resueltas sean las mismas en cada compilación.
+
+### Documentación
+
+- Nueve capturas reales de la aplicación en `docs/screenshots/`, reproducibles con `tool/capture_screenshots.mjs`.
+- README con vistazo visual, evidencia medida del APK publicado, estructura del proyecto y estado real, a la par de los proyectos de violín y guitarra.
+- Se documenta que el APK no declara `android.permission.INTERNET`, confirmado sobre el binario publicado.
+- Las notas de `0.1.0` usan enlaces absolutos: los relativos no resuelven en la página de GitHub Releases.
+
 ## 0.1.0 — 2026-08-23
 
 Primera versión pública para Android y Windows.

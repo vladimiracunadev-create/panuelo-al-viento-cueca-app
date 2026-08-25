@@ -13,7 +13,7 @@ El ZIP es la modalidad “directa”. El archivo `panuelo_al_viento.exe` no debe
 ## Requisitos
 
 - Windows 10 u 11 de 64 bits;
-- Flutter estable 3.29 o superior;
+- Flutter estable 3.44.6 (la versión fijada en CI; funciona desde 3.29);
 - Visual Studio 2022 con **Desktop development with C++**;
 - Inno Setup 6 para el instalador EXE;
 - WiX Toolset 3 para el MSI.

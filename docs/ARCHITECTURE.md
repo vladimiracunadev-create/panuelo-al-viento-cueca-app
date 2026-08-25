@@ -51,6 +51,23 @@ Una versión futura debería añadir un esquema JSON formal y migraciones entre 
 
 Los directorios `android/` y `windows/` se generan con `tool/bootstrap.*` usando las plantillas de la versión estable de Flutter instalada. `tool/configure_platforms.mjs` aplica nombre, Android API 24, metadatos y auditoría de permisos; `flutter_launcher_icons` deriva los iconos desde la fuente PNG versionada. Evitar almacenar plantillas antiguas reduce fallos al abrir el repositorio años después.
 
+### Herramientas del repositorio
+
+Todas corren con Node sin instalar dependencias, para que la verificación no dependa de tener el toolchain de Flutter listo:
+
+| Herramienta | Qué hace |
+|---|---|
+| `tool/app_version.mjs` | Lee la versión de `pubspec.yaml`. Es la única fuente de verdad; el resto la consume en vez de repetirla. |
+| `tool/validate_repository.mjs` | Archivos esenciales, coherencia de versión entre manifiesto, historial, notas y README, existencia de las capturas y límites de permisos en el código. |
+| `tool/validate_curriculum.mjs` | Niveles, clases, actividades, identificadores, orden, duración y campos requeridos del JSON. |
+| `tool/verify_apk.mjs` | Abre un APK ya compilado con `aapt2` y comprueba identidad, versión operativa, API mínima, permisos del manifiesto fusionado, arquitecturas y contenido real del currículo. |
+| `tool/capture_screenshots.mjs` | Regenera `docs/screenshots/` conduciendo la aplicación real en un Chrome sin ventana. |
+| `tool/configure_platforms.mjs` | Aplica identidad y controles de permisos sobre las plataformas recién generadas. |
+| `tool/configure_android_signing.mjs` | Conecta el keystore de CI con el Gradle generado. |
+| `tool/bootstrap.ps1` · `tool/bootstrap.sh` | Preparan el proyecto completo desde cero. |
+
+La separación importa: `validate_*` mira el repositorio, `verify_apk` mira el binario. Un repositorio impecable puede producir un artefacto equivocado, y esa es exactamente la clase de fallo que un build en verde no detecta.
+
 ## Reloj del pulso
 
 Un `Timer.periodic` acumula retrasos cuando el hilo visual se ocupa. El laboratorio usa un `Stopwatch` monotónico como referencia y temporizadores de un solo disparo calculados contra el instante objetivo de cada pulso. Si una llamada llega tarde, el siguiente intervalo se acorta para volver a la línea temporal en vez de sumar el error indefinidamente.

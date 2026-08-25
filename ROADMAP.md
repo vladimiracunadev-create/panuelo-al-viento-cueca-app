@@ -11,6 +11,7 @@
 - Sin cuenta, anuncios, analítica, cámara, micrófono ni red de producto.
 - Android APK y Windows Setup EXE, MSI y portable ZIP mediante GitHub Actions.
 - Suite documental y controles de release equivalentes a violín y guitarra.
+- Verificación del artefacto publicado: el APK se abre y se mide, no se da por bueno porque el build salió verde.
 
 ## Prioridad inmediata
 
@@ -35,6 +36,7 @@ Configurar los cuatro GitHub Secrets descritos en `docs/BUILD_MOBILE.md` y guard
 - Resultados del protocolo docente/cultural documentados.
 - Ajustes de carga y vocabulario basados en observación.
 - Firma Authenticode de Windows si existe certificado.
+- Landing pública en GitHub Pages, la única superficie que violín y guitarra tienen y esta aplicación todavía no.
 
 ### 0.3 — Medios originales y autorizados
 

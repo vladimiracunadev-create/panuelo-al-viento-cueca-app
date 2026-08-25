@@ -24,6 +24,10 @@ flutter test
 dart run tool/validate_curriculum.dart
 ```
 
+CI corre `dart format --output=none --set-exit-if-changed` sobre Flutter 3.44.6, así que formatea con esa versión antes de abrir el pull request.
+
+Si tu cambio afecta a la interfaz, regenera las capturas del README con `node tool/capture_screenshots.mjs`. Si afecta al empaquetado Android, comprueba el binario con `node tool/verify_apk.mjs <apk>`.
+
 Los cambios pedagógicos deben indicar quién los revisó y qué variante o territorio representan.
 
 Los cambios que añadan permisos, red, sensores, medios o persistencia deben actualizar `docs/PERMISSIONS.md`, `docs/PRIVACY.md`, `docs/CONTENT_LICENSES.md` y la checklist de release. Cámara y micrófono están fuera de 0.1.0; no se incorporan de manera incidental a través de una dependencia.

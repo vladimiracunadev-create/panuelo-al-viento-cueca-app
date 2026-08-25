@@ -11,7 +11,7 @@ La versión 0.1.0 no necesita permisos sensibles. **Cámara y micrófono no se s
 | Cámara | No existe `android.permission.CAMERA`. | Nunca. | Ninguno. | Ninguna imagen o video. |
 | Micrófono | No existe `android.permission.RECORD_AUDIO`. | Nunca. | Ninguno. | Ningún audio. |
 | Ubicación | No declarada. | Nunca. | Ninguno. | Ninguna coordenada. |
-| Internet | No se usa para el currículo ni el progreso. | No hay llamadas de red de producto. | Todo el curso es local. | Sin caché de red. |
+| Internet | No existe `android.permission.INTERNET` en el APK publicado. | No hay llamadas de red de producto. | Todo el curso es local. | Sin caché de red. |
 | Sonido | No requiere permiso. | Al tocar **Comenzar** en Ritmo, si **Sonido** está encendido. | Solicita un clic breve al sistema. | Nada. |
 | Vibración/háptica | No pide diálogo al usuario. | Solo en acentos del ritmo, después de **Comenzar**, con **Vibración** encendida. | `HapticFeedback.mediumImpact`; puede ser ignorado por el equipo. | Nada. |
 | Preferencias locales | No pide acceso general a archivos. | Al completar o reiniciar clases. | Lista ordenada de identificadores. | `completed_lessons_v1`. |
@@ -30,9 +30,19 @@ El clic y la vibración no son sensores: no leen el entorno ni identifican a la 
 
 ## Controles automáticos
 
-- `tool/validate_repository.mjs` busca dependencias o activaciones no autorizadas.
-- `tool/configure_platforms.mjs` revisa el manifiesto Android generado.
-- `.github/workflows/release.yml` vuelve a buscar `CAMERA` y `RECORD_AUDIO` antes de aceptar el APK.
+La ausencia de sensores se comprueba en tres momentos distintos, porque cada uno puede fallar sin que el anterior se entere:
+
+1. **En el código.** `tool/validate_repository.mjs` busca dependencias o activaciones no autorizadas (`permission_handler`, `camera:`, `microphone:`, `dart:io`).
+2. **En el manifiesto generado.** `tool/configure_platforms.mjs` revisa el `AndroidManifest.xml` que produce `flutter create`, y el workflow de release vuelve a buscar `CAMERA` y `RECORD_AUDIO` en `android/app/src`.
+3. **En el APK ya compilado.** `tool/verify_apk.mjs` lee el manifiesto binario del paquete con `aapt2`. Este es el único control que ve el manifiesto **fusionado**, es decir, los permisos que podría añadir una dependencia sin que aparezcan en el código del proyecto.
+
+El tercer control rechaza la release si el paquete declara cámara, micrófono, internet, ubicación, lectura de almacenamiento externo o contactos:
+
+```bash
+node tool/verify_apk.mjs PanueloAlViento-0.1.0-Android.apk 0.1.0
+```
+
+Sobre el APK publicado de `0.1.0` el resultado fue **sin permisos del sistema declarados**: la única entrada `uses-permission` del paquete es `cl.panueloalviento.panuelo_al_viento.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`, un permiso propio que AndroidX genera para registrar receptores internos y que no da acceso a ningún recurso del dispositivo.
 
 La pantalla **Mi avance** muestra el estado de cámara y micrófono de forma comprensible para una familia.
 
