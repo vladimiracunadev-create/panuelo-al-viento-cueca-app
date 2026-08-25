@@ -51,6 +51,14 @@ node tool/capture_screenshots.mjs
 
 Compila la aplicación para web, la sirve en localhost y conduce un Chrome sin ventana para rehacer `docs/screenshots/`. Es la forma de garantizar que las imágenes del README sean la aplicación real y no una maqueta envejecida.
 
+## Landing
+
+```bash
+node tool/build_site.mjs --serve
+```
+
+Ensambla `site/` en `build/site/` sustituyendo `__APP_VERSION__` por la versión de `pubspec.yaml`, copia la marca y las capturas, y falla si alguna imagen referenciada no existe. Así los enlaces de descarga no pueden quedarse apuntando a una versión anterior, que es la manera silenciosa de que una landing empiece a ofrecer archivos con 404.
+
 ## Empaquetado
 
 La prueba definitiva de empaquetado se ejecuta en `.github/workflows/release.yml`: coincidencia entre el tag y la versión del manifiesto, APK firmado y verificado, versión del ejecutable Windows, arranque de escritorio, EXE, MSI, portable y hashes.

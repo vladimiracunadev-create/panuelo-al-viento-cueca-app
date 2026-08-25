@@ -8,15 +8,17 @@
 
 [![CI](https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app/actions/workflows/ci.yml/badge.svg)](https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app/actions/workflows/ci.yml)
 [![Release Android y Windows](https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app/actions/workflows/release.yml/badge.svg)](https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app/actions/workflows/release.yml)
+[![Landing](https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app/actions/workflows/pages.yml/badge.svg)](https://vladimiracunadev-create.github.io/panuelo-al-viento-cueca-app/)
 
 [![Versión](https://img.shields.io/github/v/release/vladimiracunadev-create/panuelo-al-viento-cueca-app?label=versi%C3%B3n&color=2b6f9f&style=for-the-badge)](CHANGELOG.md)
 [![Clases](https://img.shields.io/badge/clases-24%20·%208%20niveles-d84a4a?style=for-the-badge)](docs/CURRICULUM.md)
 [![Actividades](https://img.shields.io/badge/actividades-72-f2b544?style=for-the-badge)](docs/CURRICULUM.md)
-[![Pruebas](https://img.shields.io/badge/pruebas-9%20+%202%20validadores-6b4fa3?style=for-the-badge)](#-verificar)
+[![Pruebas](https://img.shields.io/badge/pruebas-25%20+%202%20validadores-6b4fa3?style=for-the-badge)](#-verificar)
 [![Privacidad](https://img.shields.io/badge/cámara%20y%20micrófono-no%20usados-32856d?style=for-the-badge)](docs/PERMISSIONS.md)
 [![Licencia](https://img.shields.io/badge/licencia-MIT-173b63?style=for-the-badge)](LICENSE)
 
 [⬇️ Descargar](https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app/releases/latest) ·
+[🌐 Landing](https://vladimiracunadev-create.github.io/panuelo-al-viento-cueca-app/) ·
 [👨‍👩‍👧 Guía para familias](docs/PARENT_GUIDE.md) ·
 [🎓 Currículo](docs/CURRICULUM.md) ·
 [🏗️ Arquitectura](docs/ARCHITECTURE.md) ·
@@ -56,7 +58,8 @@ Las capturas se regeneran desde la aplicación real con `node tool/capture_scree
 | 🥁 **Pulso** | Ciclo visual de seis pulsos, agrupaciones **3+3** y **2+2+2**, 60–120 PPM. Cada pulso se agenda contra un `Stopwatch` monotónico en un instante absoluto, así que un retraso puntual no desplaza los siguientes. |
 | 🗺️ **Movimiento** | Diagramas accesibles para vuelta, ocho, medialuna, pasos, diálogo y pañuelo; equivalencia funcional en cada clase. |
 | 💾 **Progreso** | Guardado local transaccional, próxima clase, porcentaje total y por nivel, repetición y borrado confirmado. |
-| 🧪 **Calidad** | **9 pruebas** de modelos, currículo, persistencia, transacciones y navegación, más **2 validadores** que corren sin instalar Flutter. Formato, análisis estático y pruebas se ejecutan en CI sobre Flutter **3.44.6** fijado. |
+| 🧪 **Calidad** | **25 pruebas** de modelos, currículo, persistencia, transacciones, navegación y contraste de color, más **2 validadores** que corren sin instalar Flutter. Formato, análisis estático y pruebas se ejecutan en CI sobre Flutter **3.44.6** fijado. |
+| 🎨 **Contraste** | Cada par de color que la interfaz dibuja de verdad se mide contra **4,5:1 (WCAG AA)** en modo claro y oscuro; la prueba falla si una tarjeta deja de leerse. |
 | 📦 **Distribución** | APK Android; Windows en `.exe`, `.msi` y `.zip` portable; `SHA256SUMS.txt` en cada release. Los cuatro nombres de archivo llevan la versión y el workflow rechaza la publicación si alguno no coincide. |
 | 🔎 **Versión operativa** | La versión sale solo de `pubspec.yaml`. Antes de publicar, el workflow comprueba que el tag sea `v<versión>`, que existan sus notas y que el **APK compilado** declare esa misma versión. |
 | 🔒 **Privacidad** | Sin servidor, cuentas, publicidad ni analítica. El APK publicado **no declara ningún permiso del sistema**: ni cámara, ni micrófono, ni siquiera internet. |
@@ -212,6 +215,12 @@ Sobre un artefacto ya compilado o descargado:
 node tool/verify_apk.mjs build/app/outputs/flutter-apk/app-release.apk
 ```
 
+Y la landing, que se ensambla con la versión del manifiesto y comprueba que ninguna imagen falte:
+
+```bash
+node tool/build_site.mjs --serve
+```
+
 El workflow de release repite todas estas verificaciones, comprueba que el tag coincida con la versión del manifiesto, compila ambas plataformas, verifica la firma del APK y la versión del ejecutable Windows, abre brevemente la aplicación de escritorio y publica los cuatro artefactos con hashes.
 
 ## 🏗️ Arquitectura
@@ -244,13 +253,14 @@ panuelo-al-viento-cueca-app/
 │   ├── screens/             # Inicio, ruta, clase, ritmo y avance
 │   ├── state/               # AppState y navegación de progreso
 │   └── widgets/             # Tarjetas y diagramas de movimiento
-├── test/                    # 9 pruebas de modelo, datos y navegación
+├── test/                    # 25 pruebas de modelo, datos, navegación y contraste
 ├── tool/                    # Validadores, bootstrap y verificadores sin dependencias
 ├── packaging/windows/       # Inno Setup y WiX
+├── site/                    # Landing publicada en GitHub Pages
 ├── docs/
 │   ├── screenshots/         # Capturas reproducibles de la aplicación
 │   └── releases/            # Notas por versión publicada
-└── .github/workflows/       # CI y release de Android y Windows
+└── .github/workflows/       # CI, release y publicación de la landing
 ```
 
 Las carpetas `android/` y `windows/` no se versionan: se regeneran con `tool/bootstrap.*` o en CI.
@@ -277,6 +287,7 @@ Las carpetas `android/` y `windows/` no se versionan: se regeneran con `tool/boo
 | [Revisión docente](docs/TEACHER_REVIEW.md) | Protocolo para no confundir software verificado con pedagogía validada. |
 | [Fuentes culturales](docs/SOURCES.md) | Trazabilidad y criterio de uso de las referencias. |
 | [Checklist de release](docs/RELEASE_CHECKLIST.md) | Criterios técnicos, infantiles y de distribución. |
+| [Landing](https://vladimiracunadev-create.github.io/panuelo-al-viento-cueca-app/) | Página pública con capturas y descargas. |
 | [Historial de cambios](CHANGELOG.md) | Qué cambió en cada versión publicada. |
 | [Hoja de ruta](ROADMAP.md) | Qué falta y en qué orden. |
 

@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#173B63" />
+<title>Pañuelo al Viento · App educativa para aprender cueca</title>
+<meta name="description" content="App educativa, privada y sin publicidad para acercarse a la cueca desde los 10 años. 24 clases en 8 niveles, laboratorio de seis pulsos y diagramas de piso accesibles. Android y Windows, sin conexión." />
+<meta property="og:title" content="Pañuelo al Viento" />
+<meta property="og:description" content="Aprende cueca paso a paso: 24 clases, laboratorio de ritmo y diagramas de movimiento. Sin cámara, micrófono, cuenta ni publicidad." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="logo.svg" type="image/svg+xml" />
+<style>
+  :root{
+    --navy:#173B63; --navy-deep:#0F2A47; --blue:#2B6F9F; --navy-soft:#DEE9F5;
+    --accent:#2B6F9F;
+    --red:#D84A4A; --yellow:#F2B544; --green:#32856D;
+    --ink:#1B2430; --muted:#5A6675; --line:#E4DCCD;
+    --bg:#F7EFE3; --card:#FFFBF6; --shadow:0 18px 45px rgba(23,59,99,.12);
+    --nav:rgba(247,239,227,.85);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --ink:#E6EAF0; --muted:#A5B3C4; --line:#26313F; --bg:#111820; --card:#19222C; --navy-soft:#1E3A5C; --navy-deep:#AED3F0; --accent:#8FBFE0; --shadow:0 18px 50px rgba(0,0,0,.5); --nav:rgba(17,24,32,.82); }
+  }
+  :root[data-theme="light"]{ --ink:#1B2430; --muted:#5A6675; --line:#E4DCCD; --bg:#F7EFE3; --card:#FFFBF6; --navy-soft:#DEE9F5; --navy-deep:#0F2A47; --accent:#2B6F9F; --shadow:0 18px 45px rgba(23,59,99,.12); --nav:rgba(247,239,227,.85); }
+  :root[data-theme="dark"]{ --ink:#E6EAF0; --muted:#A5B3C4; --line:#26313F; --bg:#111820; --card:#19222C; --navy-soft:#1E3A5C; --navy-deep:#AED3F0; --accent:#8FBFE0; --shadow:0 18px 50px rgba(0,0,0,.5); --nav:rgba(17,24,32,.82); }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; color:var(--ink);
+    font-family:Inter,ui-rounded,"Segoe UI",system-ui,-apple-system,sans-serif;
+    background:radial-gradient(ellipse 900px 620px at 88% -8%, rgba(43,111,159,.20), transparent 70%),
+               radial-gradient(ellipse 760px 520px at 2% 6%, rgba(242,181,68,.20), transparent 70%),
+               var(--bg);
+    -webkit-font-smoothing:antialiased; line-height:1.6; overflow-x:hidden;
+  }
+  a{color:inherit}
+  .wrap{width:min(1120px, calc(100% - 40px)); margin:0 auto}
+  .eyebrow{font-size:.74rem; letter-spacing:.14em; font-weight:900; text-transform:uppercase; color:var(--accent)}
+  .skip-link{position:absolute; left:-9999px; top:0; background:var(--navy); color:#fff; padding:12px 18px; border-radius:0 0 12px 0; font-weight:800; z-index:100}
+  .skip-link:focus{left:0}
+
+  /* NAV */
+  nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(16px); background:var(--nav); border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
+  .brand{display:flex; align-items:center; gap:11px; font-weight:900; text-decoration:none}
+  .brand-mark{width:42px; height:42px; border-radius:13px; display:grid; place-items:center; font-size:1.4rem;
+    background:linear-gradient(135deg,#173B63,#2B6F9F); box-shadow:0 8px 20px rgba(23,59,99,.32)}
+  .brand small{display:block; font-weight:600; color:var(--muted); font-size:.72rem}
+  .nav-links{display:flex; align-items:center; gap:8px}
+  .nav-links a.ghost{color:var(--muted); text-decoration:none; font-weight:700; padding:9px 12px; border-radius:11px; font-size:.92rem}
+  .nav-links a.ghost:hover{color:var(--ink); background:var(--navy-soft)}
+  .btn{display:inline-flex; align-items:center; gap:8px; border:0; border-radius:13px; padding:12px 18px; font-weight:900; text-decoration:none; font-size:.95rem; transition:transform .16s ease, box-shadow .16s ease}
+  .btn.primary{color:#fff; background:var(--navy); box-shadow:0 10px 24px rgba(23,59,99,.32)}
+  .btn.primary:hover{transform:translateY(-2px); box-shadow:0 14px 30px rgba(23,59,99,.42)}
+  .btn.soft{background:var(--navy-soft); color:var(--navy-deep)}
+  .btn.soft:hover{transform:translateY(-2px)}
+  @media(max-width:640px){
+    .nav-links .hide-sm{display:none}
+    .brand small{display:none}
+    .brand{font-size:.98rem; gap:9px}
+    .brand-mark{width:36px; height:36px; border-radius:11px; font-size:1.2rem}
+    .btn{padding:11px 15px; font-size:.9rem}
+  }
+
+  /* HERO */
+  header.hero{padding:clamp(48px,8vw,96px) 0 40px}
+  .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,5vw,64px); align-items:center}
+  .hero h1{font-size:clamp(2.4rem,6vw,4.3rem); line-height:1.03; margin:14px 0 16px; letter-spacing:-.02em}
+  .hero h1 .grad{background:linear-gradient(120deg,#2B6F9F,#D84A4A); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .hero p.lead{font-size:clamp(1.05rem,2.2vw,1.28rem); color:var(--muted); max-width:36ch}
+  .hero .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:26px}
+  .trust{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:28px; color:var(--muted); font-weight:700; font-size:.9rem}
+  .trust span{display:inline-flex; align-items:center; gap:7px}
+  @media(max-width:860px){ .hero-grid{grid-template-columns:1fr; text-align:center} .hero p.lead{margin-inline:auto} .hero .cta,.trust{justify-content:center} }
+
+  /* PHONE */
+  .phone{position:relative; width:min(300px,80vw); margin:0 auto; aspect-ratio:400/860;
+    border-radius:44px; padding:12px; background:linear-gradient(160deg,#0F2A47,#2B6F9F);
+    box-shadow:0 40px 90px rgba(15,42,71,.42), inset 0 0 0 2px rgba(255,255,255,.08)}
+  .phone::before{content:""; position:absolute; top:20px; left:50%; transform:translateX(-50%); width:120px; height:26px; background:#0B1D31; border-radius:0 0 16px 16px; z-index:2}
+  .phone img{width:100%; height:100%; object-fit:cover; object-position:top; border-radius:33px; display:block}
+  .float{position:absolute; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:11px 14px; box-shadow:var(--shadow); font-weight:800; font-size:.86rem; display:flex; align-items:center; gap:9px}
+  .float .emoji{font-size:1.3rem}
+  .float.a{top:-16px; left:-8%} .float.b{bottom:-16px; right:-8%}
+  @media(max-width:860px){ .float.a{left:0} .float.b{right:0} }
+
+  /* SECTIONS */
+  section{padding:clamp(44px,7vw,80px) 0}
+  .section-head{text-align:center; max-width:660px; margin:0 auto clamp(28px,5vw,52px)}
+  .section-head h2{font-size:clamp(1.8rem,4vw,2.7rem); margin:10px 0 8px; letter-spacing:-.01em}
+  .section-head p{color:var(--muted); font-size:1.05rem; margin:0}
+
+  .features{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  @media(max-width:860px){ .features{grid-template-columns:1fr 1fr} }
+  @media(max-width:560px){ .features{grid-template-columns:1fr} }
+  .feature{background:var(--card); border:1px solid var(--line); border-radius:22px; padding:24px; box-shadow:var(--shadow)}
+  .feature .ic{width:52px; height:52px; border-radius:15px; display:grid; place-items:center; font-size:1.6rem; margin-bottom:14px}
+  .feature h3{margin:0 0 6px; font-size:1.18rem}
+  .feature p{margin:0; color:var(--muted); font-size:.96rem}
+  .i-navy{background:var(--navy-soft)} .i-red{background:rgba(216,74,74,.16)} .i-green{background:rgba(50,133,109,.16)} .i-yellow{background:rgba(242,181,68,.22)}
+
+  /* NIVELES */
+  .levels{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+  @media(max-width:860px){ .levels{grid-template-columns:1fr 1fr} }
+  @media(max-width:480px){ .levels{grid-template-columns:1fr} }
+  .level{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px; box-shadow:var(--shadow)}
+  .level .n{font-size:.72rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; color:var(--accent)}
+  .level h3{margin:6px 0 4px; font-size:1.04rem}
+  .level p{margin:0; color:var(--muted); font-size:.9rem}
+
+  /* GALLERY */
+  .gallery{display:grid; grid-auto-flow:column; grid-auto-columns:minmax(220px,1fr); gap:20px; overflow-x:auto; padding:8px 4px 22px; scroll-snap-type:x mandatory}
+  .shot{scroll-snap-align:center; margin:0}
+  .shot .frame{border-radius:30px; padding:9px; background:linear-gradient(160deg,#0F2A47,#2B6F9F); box-shadow:0 24px 55px rgba(15,42,71,.34)}
+  .shot img{width:100%; border-radius:23px; display:block}
+  .shot p{text-align:center; font-weight:800; color:var(--muted); margin:14px 0 0; font-size:.92rem}
+
+  /* DOWNLOADS */
+  .downloads{background:linear-gradient(160deg, rgba(43,111,159,.1), transparent)}
+  .dl-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media(max-width:640px){ .dl-grid{grid-template-columns:1fr} }
+  .dl{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:22px; text-align:center; box-shadow:var(--shadow); display:flex; flex-direction:column; align-items:center; gap:6px}
+  .dl .os{font-size:2.4rem; margin-bottom:4px}
+  .dl h3{margin:0; font-size:1.15rem}
+  .dl small{color:var(--muted)}
+  .dl .links{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px}
+  .dl .links a{font-size:.82rem; font-weight:800; text-decoration:none; padding:8px 12px; border-radius:10px; background:var(--navy-soft); color:var(--navy-deep)}
+  .dl .links a:hover{background:var(--navy); color:#fff}
+  .dl .untested{margin-top:10px; font-size:.74rem; font-weight:800; line-height:1.35; color:var(--muted); border-top:1px dashed var(--line); padding-top:8px}
+  .dl .untested a{color:var(--accent)}
+  .note{text-align:center; color:var(--muted); margin-top:26px; font-size:.92rem}
+
+  /* PRIVACY */
+  .privacy .wrap{background:var(--card); border:1px solid var(--line); border-radius:28px; padding:clamp(28px,5vw,48px); box-shadow:var(--shadow); display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:center}
+  @media(max-width:760px){ .privacy .wrap{grid-template-columns:1fr} }
+  .privacy ul{list-style:none; padding:0; margin:16px 0 0; display:grid; gap:12px}
+  .privacy li{display:flex; gap:11px; align-items:flex-start; font-weight:600}
+  .privacy li b{display:block}
+  .check{flex:0 0 auto; width:26px; height:26px; border-radius:8px; background:rgba(50,133,109,.22); color:var(--green); display:grid; place-items:center; font-weight:900}
+  @media (prefers-color-scheme: dark){ .check{color:#7FCDB4} }
+  :root[data-theme="dark"] .check{color:#7FCDB4}
+
+  footer{border-top:1px solid var(--line); padding:34px 0; margin-top:20px}
+  footer .wrap{display:flex; flex-wrap:wrap; gap:14px; justify-content:space-between; align-items:center; color:var(--muted); font-size:.9rem}
+  .disclaimer{background:var(--navy-soft); border-radius:18px; padding:16px 20px; color:var(--ink); font-size:.94rem; margin-top:22px; text-align:center}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#top">Saltar al contenido principal</a>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="brand-mark">🧣</span>
+      <span>Pañuelo al Viento<small>Aprender cueca paso a paso</small></span>
+    </a>
+    <div class="nav-links">
+      <a class="ghost hide-sm" href="#funciones">Funciones</a>
+      <a class="ghost hide-sm" href="#capturas">Capturas</a>
+      <a class="ghost" href="https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app">GitHub</a>
+      <a class="btn primary" href="#descargar">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">App educativa · 10 años en adelante</span>
+      <h1>Que baile el <span class="grad">pañuelo</span></h1>
+      <p class="lead">24 clases en 8 niveles, laboratorio de seis pulsos y diagramas de movimiento. Privada, sin publicidad y sin cuentas. Funciona sin conexión.</p>
+      <div class="cta">
+        <a class="btn primary" href="#descargar">⬇️ Descargar gratis</a>
+        <a class="btn soft" href="#capturas">Ver capturas</a>
+      </div>
+      <div class="trust">
+        <span>🔒 Sin cuentas</span>
+        <span>🚫 Sin publicidad</span>
+        <span>📷 Sin cámara ni micrófono</span>
+        <span>📶 Funciona sin internet</span>
+      </div>
+    </div>
+    <div>
+      <div class="phone">
+        <img src="screenshots/01-inicio.png" alt="Pantalla de inicio con el saludo, el porcentaje del recorrido y la próxima clase" />
+        <div class="float a"><span class="emoji">🪗</span> 8 niveles</div>
+        <div class="float b"><span class="emoji">🥁</span> 3+3 y 2+2+2</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="funciones">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Todo dentro de la instalación</span>
+      <h2>Una tradición viva, explicada con cuidado</h2>
+      <p>La cueca se baila de muchas maneras a lo largo de Chile. Esta app enseña una ruta introductoria adaptable y no declara una coreografía única.</p>
+    </div>
+    <div class="features">
+      <div class="feature"><div class="ic i-navy">🗺️</div><h3>24 clases</h3><p>Ocho niveles progresivos: contexto, pulso, espacio, pañuelo, recorridos, pasos, diálogo, zapateo, creación y presentación.</p></div>
+      <div class="feature"><div class="ic i-red">🥁</div><h3>Laboratorio de ritmo</h3><p>Seis pulsos agrupados en <strong>3+3</strong> y <strong>2+2+2</strong>, de 60 a 120 por minuto, con señal visual, clic opcional y vibración opcional.</p></div>
+      <div class="feature"><div class="ic i-green">🧭</div><h3>Diagramas de piso</h3><p>Vuelta, ocho, medialuna, pasos, diálogo y pañuelo, dibujados en la app y descritos para lectores de pantalla.</p></div>
+      <div class="feature"><div class="ic i-yellow">⏱️</div><h3>72 actividades cronometradas</h3><p>Tres por clase, con tiempo visible y casillas de avance. Cada clase dura entre 10 y 15 minutos.</p></div>
+      <div class="feature"><div class="ic i-green">♿</div><h3>Alternativa en cada clase</h3><p>Sentado, con recorrido reducido, con manos, voz, señas o ruedas: la marca registra participación, no perfección corporal.</p></div>
+      <div class="feature"><div class="ic i-red">🛡️</div><h3>Seguridad integrada</h3><p>Espacio, calzado, intensidad, pausa y un consejo para la persona adulta acompañan cada clase.</p></div>
+      <div class="feature"><div class="ic i-navy">💾</div><h3>Progreso local</h3><p>Guarda solo qué clases están completas, en el propio dispositivo. Repetir una clase nunca borra lo anterior.</p></div>
+      <div class="feature"><div class="ic i-yellow">🌙</div><h3>Modo claro y oscuro</h3><p>Sigue la preferencia del sistema, admite texto ampliado y se adapta de celular a escritorio.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">La ruta completa</span>
+      <h2>Ocho niveles, tres clases cada uno</h2>
+      <p>Una ruta sugerida de ocho semanas que se puede recorrer al ritmo de cada persona.</p>
+    </div>
+    <div class="levels">
+      <div class="level"><span class="n">Nivel 1</span><h3>🌎 Descubro la cueca</h3><p>Historia, pulso y preparación del espacio.</p></div>
+      <div class="level"><span class="n">Nivel 2</span><h3>🧣 Pañuelo y saludo</h3><p>El pañuelo como extensión del gesto.</p></div>
+      <div class="level"><span class="n">Nivel 3</span><h3>🧭 Vueltas y recorridos</h3><p>Vuelta, ocho y medialuna sobre el piso.</p></div>
+      <div class="level"><span class="n">Nivel 4</span><h3>👣 Pasos que conversan</h3><p>Desplazamiento con intención y control.</p></div>
+      <div class="level"><span class="n">Nivel 5</span><h3>🤝 Diálogo en pareja</h3><p>Escuchar y responder sin hablar.</p></div>
+      <div class="level"><span class="n">Nivel 6</span><h3>⚡ Zapateo y remate</h3><p>Zapateo de bajo impacto y cierre.</p></div>
+      <div class="level"><span class="n">Nivel 7</span><h3>🎶 Música y creación</h3><p>Crear una propuesta propia y segura.</p></div>
+      <div class="level"><span class="n">Nivel 8</span><h3>🎊 Cuecas de Chile</h3><p>Diversidad territorial y presentación.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="capturas">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Así se ve</span>
+      <h2>Texto corto, botones grandes, colores claros</h2>
+      <p>Capturas de la aplicación real, no maquetas. Desliza para ver más.</p>
+    </div>
+    <div class="gallery">
+      <figure class="shot"><div class="frame"><img src="screenshots/01-inicio.png" alt="Pantalla de inicio" loading="lazy"/></div><p>Inicio</p></figure>
+      <figure class="shot"><div class="frame"><img src="screenshots/02-ruta.png" alt="Ruta con los niveles y sus clases" loading="lazy"/></div><p>Ruta de 24 clases</p></figure>
+      <figure class="shot"><div class="frame"><img src="screenshots/03-clase.png" alt="Una clase abierta con su diagrama de piso" loading="lazy"/></div><p>Clase con diagrama</p></figure>
+      <figure class="shot"><div class="frame"><img src="screenshots/04-clase-pasos.png" alt="Las tres actividades cronometradas de una clase" loading="lazy"/></div><p>Tres actividades</p></figure>
+      <figure class="shot"><div class="frame"><img src="screenshots/05-ritmo.png" alt="Laboratorio de ritmo con seis pulsos" loading="lazy"/></div><p>Laboratorio de ritmo</p></figure>
+      <figure class="shot"><div class="frame"><img src="screenshots/06-avance.png" alt="Avance total y por nivel" loading="lazy"/></div><p>Mi avance</p></figure>
+      <figure class="shot"><div class="frame"><img src="screenshots/07-privacidad.png" alt="Tarjeta que explica que la cámara y el micrófono no se usan" loading="lazy"/></div><p>Cámara y micrófono</p></figure>
+      <figure class="shot"><div class="frame"><img src="screenshots/08-oscuro.png" alt="La aplicación en modo oscuro" loading="lazy"/></div><p>Modo oscuro</p></figure>
+    </div>
+  </div>
+</section>
+
+<section class="downloads" id="descargar">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Versión __APP_VERSION__</span>
+      <h2>Descarga para tu dispositivo</h2>
+      <p>Los instaladores se generan solos en cada versión y cada release incluye <code>SHA256SUMS.txt</code> para comprobar integridad.</p>
+    </div>
+    <div class="dl-grid">
+      <div class="dl">
+        <div class="os">🤖</div><h3>Android</h3><small>7.0 o superior</small>
+        <div class="links">
+          <a href="https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app/releases/latest/download/PanueloAlViento-__APP_VERSION__-Android.apk">.apk</a>
+        </div>
+        <p class="untested">⚠️ Esta versión está firmada con una clave temporal generada al compilar. Una futura actualización pedirá desinstalar primero y el avance guardado se perderá. <a href="https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app/blob/main/docs/BUILD_MOBILE.md">Cómo se resuelve</a>.</p>
+      </div>
+      <div class="dl">
+        <div class="os">🪟</div><h3>Windows</h3><small>10 y 11</small>
+        <div class="links">
+          <a href="https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app/releases/latest/download/PanueloAlViento-__APP_VERSION__-Windows-Setup.exe">.exe</a>
+          <a href="https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app/releases/latest/download/PanueloAlViento-__APP_VERSION__-Windows.msi">.msi</a>
+          <a href="https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app/releases/latest/download/PanueloAlViento-__APP_VERSION__-Windows-portable.zip">portable</a>
+        </div>
+        <p class="untested">⚠️ Sin certificado comercial de firma, así que SmartScreen puede avisar. Comprueba el hash publicado antes de continuar. El ZIP portable se descomprime completo.</p>
+      </div>
+    </div>
+    <p class="note">📱 Android pedirá permitir «instalar apps desconocidas» al abrir el archivo; esa autorización corresponde al navegador, no a la app. · <a href="https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app/releases">Ver todas las versiones y archivos →</a></p>
+  </div>
+</section>
+
+<section class="privacy">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Privacidad por diseño</span>
+      <h2 style="font-size:clamp(1.7rem,4vw,2.5rem); margin:8px 0 0">Aprender no debería costar la privacidad de un niño</h2>
+      <p style="color:var(--muted)">No es una promesa escrita: el paquete Android publicado <b>no declara ningún permiso del sistema</b>, y una comprobación automática lo verifica sobre el binario antes de cada publicación.</p>
+    </div>
+    <ul>
+      <li><span class="check">✓</span><span><b>Sin cámara ni micrófono</b>No existe botón, código ni permiso. La app lo explica también dentro de «Mi avance».</span></li>
+      <li><span class="check">✓</span><span><b>Sin internet</b>El APK ni siquiera pide permiso de red: todo el curso viaja dentro de la instalación.</span></li>
+      <li><span class="check">✓</span><span><b>Sin cuentas, publicidad ni analítica</b>El avance se guarda solo en el dispositivo y se puede borrar desde la app.</span></li>
+      <li><span class="check">✓</span><span><b>Código abierto (MIT)</b>Cualquiera puede revisar cómo funciona y reproducir las comprobaciones.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="disclaimer">
+      💃 Esta app <b>complementa</b>, pero no reemplaza, la guía de docentes y personas cultoras. La cueca es una tradición viva con expresiones territoriales diversas, y todavía falta revisión presencial documentada antes de usarla como curso escolar final.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>🧣 Pañuelo al Viento · Código, textos y marca bajo licencia MIT</span>
+    <span><a href="https://github.com/vladimiracunadev-create/panuelo-al-viento-cueca-app" style="text-decoration:none; font-weight:800; color:var(--accent)">Ver en GitHub →</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

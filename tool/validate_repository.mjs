@@ -41,6 +41,8 @@ const requiredFiles = [
   'tool/app_version.mjs',
   'tool/verify_apk.mjs',
   'tool/capture_screenshots.mjs',
+  'tool/build_site.mjs',
+  'site/index.html',
 ];
 
 const errors = [];
@@ -116,6 +118,23 @@ if (version && existsSync(`docs/releases/v${version}.md`)) {
   if (relative.length) {
     errors.push(
       `Las notas de la versión usan enlaces relativos que se rompen en la página de releases: ${relative.join(', ')}.`,
+    );
+  }
+}
+
+// La landing no debe llevar la versión escrita a mano: se sustituye al
+// ensamblar. Una descarga con el número congelado devuelve 404 tras publicar.
+if (existsSync('site/index.html')) {
+  const site = readFileSync('site/index.html', 'utf8');
+  if (!site.includes('__APP_VERSION__')) {
+    errors.push(
+      'site/index.html debe usar __APP_VERSION__ en lugar de un número de versión escrito a mano.',
+    );
+  }
+  const hardcoded = [...site.matchAll(/PanueloAlViento-(\d+\.\d+\.\d+)-/g)];
+  if (hardcoded.length) {
+    errors.push(
+      `site/index.html nombra artefactos con una versión fija: ${[...new Set(hardcoded.map((m) => m[1]))].join(', ')}.`,
     );
   }
 }

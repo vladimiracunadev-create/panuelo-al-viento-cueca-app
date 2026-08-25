@@ -20,6 +20,18 @@ Cambios de documentación, verificación y publicación. No modifican el comport
 - `tool/validate_repository.mjs` deja de tener la versión escrita dentro y ahora comprueba coherencia entre `pubspec.yaml`, `CHANGELOG.md`, las notas de release y los nombres de artefacto del README, que las capturas existan y que las notas no lleven enlaces relativos.
 - `pubspec.lock` se versiona para que las dependencias resueltas sean las mismas en cada compilación.
 
+### Interfaz
+
+- Modo oscuro corregido. Los roles `*Container` se generaban desde una semilla amarilla mientras `primary`, `secondary` y `tertiary` estaban sobrescritos a mano, y sobrescribir un color no regenera su contenedor: el resultado era un `primaryContainer` marrón junto a un `primary` azul y un `tertiaryContainer` verde junto a un `tertiary` amarillo. Ahora los contenedores se declaran explícitamente en los dos modos, y cada uno en modo oscuro es la versión profunda del tono que ocupa esa misma ranura en modo claro.
+- El rojo del pulso acentuado se oscurece a `#B63535`: el rojo de marca sobre blanco solo alcanzaba 4,2:1.
+- Nuevas pruebas de contraste que miden con WCAG cada par de color que la interfaz dibuja de verdad —incluido el caso real de una tarjeta con color propio y texto heredado de `onSurface`— y fallan por debajo de 4,5:1. La suite pasa de 9 a 25 pruebas.
+
+### Landing
+
+- Nueva página pública en `site/`, publicada en GitHub Pages, con la misma estructura que las de violín y guitarra: capturas reales, los ocho niveles, descargas y privacidad.
+- `tool/build_site.mjs` la ensambla sustituyendo la versión desde `pubspec.yaml` y falla si alguna imagen referenciada no existe. Los enlaces de descarga no pueden quedarse apuntando a una versión anterior.
+- El validador rechaza cualquier número de versión escrito a mano dentro de `site/`.
+
 ### Documentación
 
 - Nueve capturas reales de la aplicación en `docs/screenshots/`, reproducibles con `tool/capture_screenshots.mjs`.

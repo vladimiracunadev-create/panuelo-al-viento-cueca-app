@@ -62,6 +62,7 @@ Todas corren con Node sin instalar dependencias, para que la verificación no de
 | `tool/validate_curriculum.mjs` | Niveles, clases, actividades, identificadores, orden, duración y campos requeridos del JSON. |
 | `tool/verify_apk.mjs` | Abre un APK ya compilado con `aapt2` y comprueba identidad, versión operativa, API mínima, permisos del manifiesto fusionado, arquitecturas y contenido real del currículo. |
 | `tool/capture_screenshots.mjs` | Regenera `docs/screenshots/` conduciendo la aplicación real en un Chrome sin ventana. |
+| `tool/build_site.mjs` | Ensambla la landing de `site/` con la versión del manifiesto y comprueba que ninguna imagen falte. |
 | `tool/configure_platforms.mjs` | Aplica identidad y controles de permisos sobre las plataformas recién generadas. |
 | `tool/configure_android_signing.mjs` | Conecta el keystore de CI con el Gradle generado. |
 | `tool/bootstrap.ps1` · `tool/bootstrap.sh` | Preparan el proyecto completo desde cero. |

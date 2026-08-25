@@ -69,6 +69,7 @@ jobs:
       - run: flutter pub get
       - run: node tool/validate_repository.mjs
       - run: node tool/validate_curriculum.mjs
+      - run: node tool/build_site.mjs
       - run: dart format --output=none --set-exit-if-changed lib test tool
       - run: flutter analyze
       - run: flutter test --reporter expanded

@@ -1,0 +1,50 @@
+name: Landing (GitHub Pages)
+
+# Publica la landing de site/ en GitHub Pages. La versión y los nombres de los
+# artefactos se sustituyen desde pubspec.yaml al ensamblar, así que la página
+# no puede quedarse ofreciendo la descarga de una versión anterior.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "docs/screenshots/**"
+      - "assets/branding/**"
+      - "pubspec.yaml"
+      - "tool/build_site.mjs"
+      - "tool/app_version.mjs"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ensamblar la landing
+        run: node tool/build_site.mjs
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir artefacto
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/site
+
+      - name: Desplegar
+        id: deployment
+        uses: actions/deploy-pages@v4
