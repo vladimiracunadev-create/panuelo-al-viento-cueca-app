@@ -4,6 +4,19 @@ import 'package:flutter/material.dart';
 
 import '../core/app_theme.dart';
 
+/// Esquema de piso del recorrido de una clase.
+///
+/// Se dibuja con `CustomPaint` en vez de incluir imágenes: no añade activos
+/// binarios que licenciar, se adapta a cualquier tamaño sin perder nitidez y
+/// responde al modo oscuro. Cada diagrama se expone como imagen semántica con
+/// una descripción textual, porque un lector de pantalla no puede interpretar
+/// un lienzo.
+///
+/// [pattern] es la clave `diagram` de la clase. El currículo de 0.1.0 usa siete
+/// valores —`circle`, `eight`, `semicircle`, `steps`, `wave`, `pair` y `free`—
+/// y el pintor solo dibuja un trazo propio para los cinco primeros: `pair` y
+/// `free` caen en la rama por defecto y comparten el mismo esquema genérico de
+/// dos figuras enfrentadas. La descripción semántica sí los distingue.
 class MovementDiagram extends StatelessWidget {
   const MovementDiagram({required this.pattern, super.key});
 
@@ -26,6 +39,10 @@ class MovementDiagram extends StatelessWidget {
     );
   }
 
+  /// Descripción del recorrido para tecnologías de apoyo.
+  ///
+  /// Describe la intención del movimiento, no una orden corporal: la
+  /// equivalencia accesible de cada clase vive en el propio currículo.
   String _description(String value) {
     return switch (value) {
       'circle' => 'Diagrama de una vuelta circular alrededor de la pareja.',
@@ -39,6 +56,13 @@ class MovementDiagram extends StatelessWidget {
   }
 }
 
+/// Dibuja el patrón sobre un lienzo de proporción 16:9.
+///
+/// Todas las medidas son fracciones de `size`, nunca píxeles absolutos, para
+/// que el esquema sea legible desde un teléfono estrecho hasta una ventana de
+/// escritorio. Los colores oscuros se eligen a mano en lugar de tomarse del
+/// `ColorScheme` porque el lienzo tiene su propio fondo y debe mantener
+/// contraste con él, no con la superficie de la tarjeta que lo contiene.
 class _MovementPainter extends CustomPainter {
   _MovementPainter({required this.pattern, required this.darkMode});
 

@@ -8,6 +8,9 @@
 build/
 coverage/
 
+# Caché de diagramas rasterizados por tool/build_docs_pdf.py.
+.mermaid-cache/
+
 # Generated platform files are created by tool/bootstrap.* and CI.
 /android/
 /windows/

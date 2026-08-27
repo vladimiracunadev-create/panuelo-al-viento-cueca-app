@@ -1,5 +1,30 @@
+/// Modelos inmutables del currículo.
+///
+/// Son el contrato entre `assets/content/curriculum.json` y el resto de la
+/// aplicación. No dependen de Flutter a propósito: así las pruebas de
+/// integridad pueden construirlos leyendo el JSON directamente, sin levantar
+/// un entorno de widgets.
+///
+/// Ninguna fábrica `fromJson` tolera campos ausentes: un currículo incompleto
+/// debe romper al cargar y no producir una clase a medias que llegue a la
+/// interfaz. Quien edita el JSON tiene dos validadores que avisan antes
+/// (`tool/validate_curriculum.mjs` y `tool/validate_curriculum.dart`).
+library;
+
+/// Naturaleza pedagógica de una actividad dentro de una clase.
+///
+/// Hoy solo alimenta la redacción del contenido: la interfaz no ramifica por
+/// este valor. Se conserva porque es la dimensión con la que el currículo
+/// equilibra la secuencia mostrar o descubrir -> practicar -> interpretar.
 enum ActivityType { discover, observe, move, listen, create, reflect }
 
+/// Traduce el campo `type` del JSON a [ActivityType].
+///
+/// Degrada a [ActivityType.discover] ante un valor desconocido en vez de
+/// lanzar. La decisión es deliberada: un `type` mal escrito no debe impedir
+/// que una clase se abra, porque el valor no cambia lo que se muestra. El
+/// control estricto de este campo vive en los validadores, no en tiempo de
+/// ejecución.
 ActivityType activityTypeFromJson(String value) {
   return ActivityType.values.firstWhere(
     (type) => type.name == value,
@@ -7,6 +32,10 @@ ActivityType activityTypeFromJson(String value) {
   );
 }
 
+/// Una de las tres actividades cronometradas de una clase.
+///
+/// Los validadores exigen que los [minutes] de las tres actividades sumen
+/// exactamente el `durationMinutes` de la clase que las contiene.
 class LearningActivity {
   const LearningActivity({
     required this.type,
@@ -30,6 +59,17 @@ class LearningActivity {
   }
 }
 
+/// Una clase de la ruta de aprendizaje.
+///
+/// [order] es la posición global dentro de las 24 clases, no dentro del nivel:
+/// es el número que se dibuja en la tarjeta y el que decide cuál es la próxima
+/// clase pendiente. [diagram] es una clave de patrón que interpreta
+/// `MovementDiagram`; un valor sin dibujo propio degrada a un esquema genérico
+/// en vez de fallar.
+///
+/// Los campos [safety], [accessibility] y [teacherTip] son obligatorios por
+/// decisión pedagógica, no técnica: una actividad corporal sin advertencia de
+/// seguridad ni equivalencia accesible no debe poder publicarse.
 class Lesson {
   const Lesson({
     required this.id,
@@ -81,6 +121,7 @@ class Lesson {
   }
 }
 
+/// Un nivel: tres clases agrupadas bajo un mismo foco temático.
 class LearningLevel {
   const LearningLevel({
     required this.id,
@@ -112,6 +153,11 @@ class LearningLevel {
   }
 }
 
+/// Raíz del contenido: la ruta completa de niveles y clases.
+///
+/// [version] es la versión del currículo y es independiente de la versión de
+/// la aplicación que declara `pubspec.yaml`. Confundirlas al leer el JSON es
+/// un error fácil de cometer.
 class Curriculum {
   const Curriculum({
     required this.version,
@@ -125,6 +171,11 @@ class Curriculum {
   final String audience;
   final List<LearningLevel> levels;
 
+  /// Todas las clases de todos los niveles, ordenadas por [Lesson.order].
+  ///
+  /// Construye y ordena una lista nueva en cada llamada. Con 24 clases el
+  /// coste es irrelevante, pero conviene saberlo antes de invocarlo dentro de
+  /// un bucle de dibujo.
   List<Lesson> get lessons =>
       levels.expand((level) => level.lessons).toList(growable: false)
         ..sort((a, b) => a.order.compareTo(b.order));

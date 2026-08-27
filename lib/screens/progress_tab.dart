@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../state/app_state.dart';
 
+/// Pantalla Mi avance: progreso, frontera de privacidad y reinicio.
+///
+/// La tarjeta de privacidad no es decorativa. Declara en la propia interfaz lo
+/// que la documentación promete —que la aplicación no usa cámara ni micrófono—
+/// para que una familia pueda comprobarlo sin leer un documento técnico. El
+/// texto de esas dos líneas está afirmado en `test/app_smoke_test.dart`, así
+/// que cambiarlo rompe la suite: es intencionado.
 class ProgressTab extends StatelessWidget {
   const ProgressTab({required this.state, super.key});
 
@@ -129,6 +136,10 @@ class ProgressTab extends StatelessWidget {
     );
   }
 
+  /// Pide confirmación antes de borrar el avance local.
+  ///
+  /// El borrado es irreversible y no hay copia en la nube ni exportación en
+  /// esta versión, así que la confirmación es el único freno que existe.
   Future<void> _confirmReset(BuildContext context) async {
     final confirmed = await showDialog<bool>(
       context: context,

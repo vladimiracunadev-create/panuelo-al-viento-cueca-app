@@ -3,8 +3,24 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/// Las dos agrupaciones de seis pulsos que el laboratorio contrasta.
+///
+/// `sixEight` acentúa 1 y 4 (3+3) y `threeFour` acentúa 1, 3 y 5 (2+2+2). En la
+/// cueca ambas sensaciones pueden convivir; el laboratorio las separa solo para
+/// entrenar la escucha, y la tarjeta final del formulario lo advierte para no
+/// presentar esta simplificación como la interpretación real.
 enum _PulsePattern { sixEight, threeFour }
 
+/// Laboratorio de ritmo: metrónomo visual de seis pulsos.
+///
+/// Las salidas de sonido y vibración son opcionales y están apagadas hasta que
+/// se pulsa Comenzar. Ninguna de las dos lee el entorno: se piden al sistema
+/// operativo y no abren ningún canal de captura.
+///
+/// El estado de esta pantalla sobrevive al cambio de pestaña, porque
+/// `HomeShell` la mantiene en un `IndexedStack`. Un pulso iniciado sigue
+/// sonando mientras se navega por Inicio, Ruta o Avance; solo Detener, o cerrar
+/// la aplicación, lo cancela.
 class RhythmLabScreen extends StatefulWidget {
   const RhythmLabScreen({super.key});
 
@@ -271,6 +287,11 @@ class _RhythmLabScreenState extends State<RhythmLabScreen> {
     _startSchedule();
   }
 
+  /// Reinicia la línea temporal del pulso desde el instante actual.
+  ///
+  /// Se llama también al mover el deslizador de velocidad mientras suena: la
+  /// referencia se pone a cero para que el cambio de tempo se note de inmediato
+  /// en vez de esperar a que venza el intervalo ya programado.
   void _startSchedule() {
     _timer?.cancel();
     _scheduledTick = 0;
@@ -280,6 +301,22 @@ class _RhythmLabScreenState extends State<RhythmLabScreen> {
     _scheduleNextPulse();
   }
 
+  /// Programa el pulso siguiente contra un instante absoluto.
+  ///
+  /// Este método es el motivo de que no se use `Timer.periodic`. Un temporizador
+  /// periódico vuelve a contar desde el momento en que **se ejecutó** la llamada
+  /// anterior, de modo que cada retraso del hilo visual se suma al siguiente y
+  /// el metrónomo se va quedando atrás sin recuperarse nunca.
+  ///
+  /// Aquí el objetivo de cada pulso se calcula sobre un [Stopwatch] monotónico
+  /// como `microsPerPulse * (tick + 1)`, y el temporizador solo espera lo que
+  /// falte para llegar a ese instante. Si una llamada llega tarde, el intervalo
+  /// siguiente se acorta —o se dispara de inmediato con espera cero— y la serie
+  /// vuelve a la línea temporal en vez de acumular el error.
+  ///
+  /// Riesgo al modificar: sustituirlo por un intervalo fijo reintroduce una
+  /// deriva que solo se nota tras varios minutos de práctica, que es
+  /// exactamente cuando importa.
   void _scheduleNextPulse() {
     if (!_playing) {
       return;
@@ -301,6 +338,12 @@ class _RhythmLabScreenState extends State<RhythmLabScreen> {
     );
   }
 
+  /// Emite las señales del pulso actual, después de haberlo dibujado.
+  ///
+  /// El clic se pide en cada pulso; la respuesta háptica solo en los acentos,
+  /// para que la vibración marque la agrupación y no se convierta en un zumbido
+  /// continuo. Ambas pueden ser ignoradas por el equipo —la háptica no suele
+  /// existir en escritorio— y esa ausencia no se trata como error.
   void _emitPulse() {
     final accent = _accents.contains(_pulse);
     if (_sound) {

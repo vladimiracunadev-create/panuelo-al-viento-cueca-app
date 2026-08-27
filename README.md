@@ -221,6 +221,12 @@ Y la landing, que se ensambla con la versión del manifiesto y comprueba que nin
 node tool/build_site.mjs --serve
 ```
 
+Y la documentación de sistema, cuyos PDF se generan desde los mismos Markdown, con la versión y el commit leídos del repositorio:
+
+```bash
+python tool/build_docs_pdf.py
+```
+
 El workflow de release repite todas estas verificaciones, comprueba que el tag coincida con la versión del manifiesto, compila ambas plataformas, verifica la firma del APK y la versión del ejecutable Windows, abre brevemente la aplicación de escritorio y publica los cuatro artefactos con hashes.
 
 ## 🏗️ Arquitectura
@@ -258,6 +264,7 @@ panuelo-al-viento-cueca-app/
 ├── packaging/windows/       # Inno Setup y WiX
 ├── site/                    # Landing publicada en GitHub Pages
 ├── docs/
+│   ├── system-documentation/ # Documentación técnica de sistema (20 .md + PDF)
 │   ├── screenshots/         # Capturas reproducibles de la aplicación
 │   └── releases/            # Notas por versión publicada
 └── .github/workflows/       # CI, release y publicación de la landing
@@ -269,6 +276,7 @@ Las carpetas `android/` y `windows/` no se versionan: se regeneran con `tool/boo
 
 | Documento | Contenido |
 |---|---|
+| **[Documentación de sistema](docs/system-documentation/)** | **20 documentos técnicos**: mapa del código, referencia símbolo a símbolo, flujo de datos, persistencia, trazabilidad y registro de hallazgos. También en [PDF](docs/system-documentation/pdf/). |
 | [Currículo](docs/CURRICULUM.md) | Mapa de 24 clases, evaluación formativa y uso escolar. |
 | [Plan de ocho semanas](docs/PRACTICE_PLAN_8_WEEKS.md) | Frecuencia, sesiones y evidencias observables. |
 | [Guía para familias](docs/PARENT_GUIDE.md) | Instalación, acompañamiento, seguridad y progreso. |

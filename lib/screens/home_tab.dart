@@ -6,6 +6,15 @@ import '../state/app_state.dart';
 import '../widgets/lesson_card.dart';
 import 'lesson_screen.dart';
 
+/// Pantalla de inicio: recorrido, próxima clase y accesos directos.
+///
+/// Presenta una sola acción principal —la próxima clase pendiente— en vez del
+/// catálogo completo. Cuando ya no queda ninguna, la sustituye por una tarjeta
+/// de cierre en lugar de dejar un hueco.
+///
+/// `onOpenRoute` y `onOpenRhythm` no navegan: cambian la pestaña seleccionada
+/// en `HomeShell`. Por eso son funciones inyectadas y no `Navigator.push`, que
+/// apilaría una segunda copia de una pantalla que ya está viva.
 class HomeTab extends StatelessWidget {
   const HomeTab({
     required this.state,

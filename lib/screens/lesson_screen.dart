@@ -4,6 +4,17 @@ import '../domain/curriculum.dart';
 import '../state/app_state.dart';
 import '../widgets/movement_diagram.dart';
 
+/// Detalle de una clase: contexto, diagrama, actividades y cierre.
+///
+/// El botón de completar permanece desactivado hasta que las tres actividades
+/// están marcadas. Es una decisión pedagógica, no una validación: la marca
+/// registra participación, no dominio, y obliga a pasar por los tres momentos
+/// de la clase antes de darla por vista.
+///
+/// Las casillas son estado local de la pantalla y **no se persisten**. Salir de
+/// la clase sin completarla las descarta; solo el identificador de una clase
+/// completada llega al almacenamiento. Es coherente con el inventario de datos
+/// de `docs/PRIVACY.md`: no se guarda el detalle de la práctica.
 class LessonScreen extends StatefulWidget {
   const LessonScreen({required this.state, required this.lesson, super.key});
 
@@ -158,6 +169,12 @@ class _LessonScreenState extends State<LessonScreen> {
     );
   }
 
+  /// Persiste la clase y celebra, en ese orden.
+  ///
+  /// El `await` a `completeLesson` va primero a propósito: si la escritura
+  /// falla, la excepción sube y no se llega a mostrar una felicitación por algo
+  /// que no quedó guardado. El `mounted` posterior cubre el caso de que la
+  /// persona salga de la pantalla mientras se escribe.
   Future<void> _complete() async {
     await widget.state.completeLesson(widget.lesson.id);
     if (!mounted) {
@@ -185,6 +202,12 @@ class _LessonScreenState extends State<LessonScreen> {
     }
   }
 
+  /// Cierra una repetición de una clase ya completada.
+  ///
+  /// No toca la persistencia: repetir no suma, pero tampoco puede restar. Solo
+  /// limpia las casillas para poder volver a recorrer la clase y avisa de que
+  /// el avance anterior sigue intacto, porque desmarcar las tres casillas
+  /// parece un retroceso si nadie lo dice.
   void _finishRepeat() {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(

@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../domain/curriculum.dart';
 
+/// Fila compacta de una clase, reutilizada en Inicio y en Ruta.
+///
+/// El estado completado se comunica con icono y color de contenedor a la vez, y
+/// nunca solo con color: es un requisito de accesibilidad declarado en
+/// `docs/ACCESSIBILITY.md`.
 class LessonCard extends StatelessWidget {
   const LessonCard({
     required this.lesson,

@@ -6,6 +6,19 @@ import 'progress_tab.dart';
 import 'rhythm_lab_screen.dart';
 import 'route_tab.dart';
 
+/// Contenedor de las cuatro secciones y de su navegación.
+///
+/// Cambia de forma según el ancho disponible: por debajo de 840 px lógicos usa
+/// una barra inferior, y a partir de ahí una barra lateral. El umbral se
+/// comprueba con `LayoutBuilder` y no con la plataforma, de modo que una
+/// ventana de escritorio estrecha se comporta como un teléfono.
+///
+/// Las cuatro secciones viven en un `IndexedStack`, no en un `PageView` ni en
+/// rutas: cambiar de pestaña conserva la posición de desplazamiento y el estado
+/// de cada una. Tiene una consecuencia que conviene tener presente antes de
+/// tocar nada aquí: el estado de las pestañas no visibles **sigue vivo**. En
+/// concreto, `RhythmLabScreen` no se descarta al salir de Ritmo y su
+/// temporizador continúa emitiendo pulsos hasta que se pulsa Detener.
 class HomeShell extends StatefulWidget {
   const HomeShell({required this.state, super.key});
 

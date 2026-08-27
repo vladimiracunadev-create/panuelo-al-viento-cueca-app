@@ -4,6 +4,14 @@ import '../state/app_state.dart';
 import '../widgets/lesson_card.dart';
 import 'lesson_screen.dart';
 
+/// Ruta completa: los ocho niveles, desplegables, con sus tres clases.
+///
+/// Un nivel se abre solo si es el primero o si está a medias. Así, al volver a
+/// la aplicación, la lista muestra abierto el punto donde se dejó la práctica
+/// sin obligar a desplegar nada, y los niveles ya terminados no ocupan espacio.
+///
+/// Ninguna clase está bloqueada: se puede abrir cualquiera en cualquier orden.
+/// El avance sugiere, no restringe.
 class RouteTab extends StatelessWidget {
   const RouteTab({required this.state, super.key});
 
